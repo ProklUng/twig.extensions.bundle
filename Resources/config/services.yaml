@@ -107,3 +107,6 @@ services:
     arguments: ['@routing.utils', '@parameter_bag']
 
   Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath: '@twig_extension_bundle.twig.paths'
+
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore:
+    arguments: ['@assets.manager']

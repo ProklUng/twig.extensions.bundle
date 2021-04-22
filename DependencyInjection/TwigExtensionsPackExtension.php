@@ -9,6 +9,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
+use Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore;
 
 /**
  * Class TwigExtensionsPackExtension
@@ -51,6 +52,10 @@ class TwigExtensionsPackExtension extends Extension
 
         if (!class_exists(Mobile_Detect::class)) {
             $container->removeDefinition('twig_extension_bundle.mobile.detect.extension');
+        }
+
+        if (!$container->hasDefinition('assets.manager')) {
+            $container->removeDefinition(SymfonyEncore::class);
         }
     }
 
