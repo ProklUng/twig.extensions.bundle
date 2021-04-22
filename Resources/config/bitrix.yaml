@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  ##################
+  # Twig extensions
+  ##################
+
+  # Битриксовые штучки-дрючки.
+  bitrix.pieces:
+    class: Prokl\Bundles\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\BitrixPiecesExtension
+    arguments: ['%kernel.project_dir%']
+    tags:
+      - { name: twig.extension }

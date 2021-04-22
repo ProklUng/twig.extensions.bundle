@@ -1,0 +1,109 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  ##################
+  # Twig extensions
+  ##################
+
+  # Dump
+  twig_extension_bundle.debug_extension:
+    class: Twig\Extension\DebugExtension
+    tags:
+      - { name: twig.extension }
+
+  # Расширенный var_dump.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\VarDumpExtension:
+    tags:
+      - { name: twig.extension }
+
+  twig_extension_bundle.twig_array:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\ArrayExtension
+    tags:
+      - { name: twig.extension }
+
+  # Различные хэлперы, связанные с сервис-контейнером.
+  twig_extension_bundle.container:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\ContainerTwigExtension
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
+
+  # Глобальные переменные. Секция globals конфигурации twig.
+  twig_extension_bundle.global_extension:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\GlobalsExtension
+    arguments: ['%twig%']
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
+
+  # Строковые фильтры и функции.
+  twig_extension_bundle.string_extension:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\StringTwigExtension
+    tags:
+      - { name: twig.extension }
+
+  # Определение мобил.
+  twig_extension_bundle.mobile.detect.extension:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\MobileDetectExtension
+    arguments: ['@mobile.detector']
+    tags:
+      - { name: twig.extension }
+
+  # controller()
+  twig_extension_bundle.controller:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\ControllerExtension
+    tags:
+      - { name: twig.extension }
+
+  # render(). Работает только при установленном роутере.
+  twig_extension_bundle.render:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\RenderExtension
+    arguments:
+      - '@dispatcher.controller'
+      - '@routing.utils'
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
+
+  # json_decode.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\JsonDecodeExtension:
+    tags:
+      - { name: twig.extension }
+
+  # apply_filter.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\ApplyFilterExtension:
+    tags:
+      - { name: twig.extension }
+
+  # render_service.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\RenderServiceExtension:
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
+
+  # inline_css.
+  Twig\Extra\CssInliner\CssInlinerExtension:
+    tags:
+      - { name: twig.extension }
+
+  # html_classes.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\HtmlExtension:
+    tags:
+      - { name: twig.extension }
+
+  #################
+  # Twig functions
+  #################
+
+  twig.paths:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath
+    arguments: ['@routing.utils', '@parameter_bag']
+
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath: '@twig.paths'

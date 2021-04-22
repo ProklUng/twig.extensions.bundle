@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: true
+
+  ##################
+  # Twig extensions
+  ##################
+
+  # Функции Wordpress.
+  wordpress.functions:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Wordpress\WordpressExtension
+    tags:
+      - { name: twig.extension }
