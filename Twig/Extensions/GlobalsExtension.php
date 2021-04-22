@@ -54,6 +54,9 @@ class GlobalsExtension extends AbstractExtension implements GlobalsInterface
         $result = [];
 
         foreach ($this->config as $name => $global) {
+            if (!$global) {
+                continue;
+            }
             if ($this->container->has($global)) {
                 $result[$name] = $this->container->get(
                     $global
