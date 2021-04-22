@@ -102,7 +102,7 @@ services:
   # Twig functions
   #################
 
-  twig.paths:
+  twig_extension_bundle.twig.paths:
     class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath
     arguments: ['@routing.utils', '@parameter_bag']
 

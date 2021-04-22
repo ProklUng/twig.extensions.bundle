@@ -46,6 +46,7 @@ class TwigExtensionsPackExtension extends Extension
         // Если не установлен Symfony Router Bundle, то удаляю расширение render.
         if (!class_exists(DispatchController::class)) {
             $container->removeDefinition('twig_extension_bundle.render');
+            $container->removeDefinition('twig_extension_bundle.twig.paths');
         }
 
         if (!class_exists(Mobile_Detect::class)) {
