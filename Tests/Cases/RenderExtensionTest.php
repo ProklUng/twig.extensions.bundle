@@ -3,8 +3,9 @@
 namespace Prokl\TwigExtensionsPackBundle\Tests\Cases;
 
 use Exception;
-use Prokl\CustomArgumentResolverBundle\Service\ResolversDependency\ResolveDependencyMakerContainerAware;
 use InvalidArgumentException;
+use Prokl\TestingTools\Tools\PHPUnitUtils;
+use Prokl\TestingTools\Traits\DataProviders\Elements;
 use Prokl\TwigExtensionsPackBundle\Twig\Extensions\Examples\ExampleSimpleController;
 use Prokl\TwigExtensionsPackBundle\Twig\Extensions\RenderExtension;
 use Prokl\TestingTools\Base\BaseTestCase;
@@ -14,8 +15,6 @@ use RuntimeException;
 use Symfony\Component\HttpKernel\Controller\ControllerReference;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
-use Tests\PHPUnitUtils;
-use Tests\Traits\DataProviders\Elements;
 
 /**
  * Class RenderExtensionTest
@@ -44,7 +43,6 @@ class RenderExtensionTest extends BaseTestCase
         parent::setUp();
 
         $this->obTestObject = new RenderExtension(
-            $this->container->get(ResolveDependencyMakerContainerAware::class),
             $this->container->get('dispatcher.controller'),
             $this->getRouteCollection(),
         );
