@@ -161,7 +161,7 @@ class TwigConfiguratorWordpress
         }
 
         foreach ($paths as $path) {
-            if (@is_dir($path)) {
+            if (@is_dir(ABSPATH . $path)) {
                 $arResult[] = ABSPATH . $path;
                 continue;
             }
