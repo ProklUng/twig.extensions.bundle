@@ -5,6 +5,9 @@ namespace Prokl\TwigExtensionsPackBundle\Twig\Functions;
 use Prokl\WpSymfonyRouterBundle\Services\Utils\RouteChecker;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
+use Twig_ExtensionInterface;
 
 /**
  * Class SymfonyTwigPath
@@ -15,7 +18,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * @since 14.10.2020 Выпиливание auto-wiring.
  * @since 01.12.2020 Внедрение сервиса routing.utils.
  */
-class SymfonyTwigPath
+class SymfonyTwigPath extends AbstractExtension implements Twig_ExtensionInterface
 {
     /**
      * @var RouteChecker $routingService Утилиты по работе с роутингом.
@@ -39,6 +42,33 @@ class SymfonyTwigPath
     ) {
         $this->routingService = $routing;
         $this->parameterBag = $parameterBag;
+    }
+
+    /**
+     * Return extension name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return 'twig_path';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    /**
+     * Twig functions
+     *
+     * @return array
+     */
+    public function getFunctions()
+    {
+        return [
+            new TwigFunction('path', [$this, 'path']),
+            new TwigFunction('url', [$this, 'url']),
+            new TwigFunction('absolute_url', [$this, 'absolute_url']),
+        ];
     }
 
     /**

@@ -55,6 +55,7 @@ class SymfonyEncoreExtension extends AbstractExtension implements Twig_Extension
         return [
             new TwigFunction('encore_entry_link_tags', [$this, 'entryLinkTag']),
             new TwigFunction('encore_entry_script_tags', [$this, 'entryLinkScript']),
+            new TwigFunction('asset', [$this, 'getLinkEntry']),
         ];
     }
 

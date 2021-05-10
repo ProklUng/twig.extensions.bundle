@@ -104,6 +104,11 @@ services:
     tags:
       - { name: twig.extension }
 
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath:
+    arguments: ['@routing.utils', '@parameter_bag']
+    tags:
+      - { name: twig.extension }
+
   ###### Прочее ##########
 
   # Пути к сборке Webpack.
@@ -116,11 +121,7 @@ services:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
     arguments: ['@twig_extension_bundle.build_path']
 
-  twig_extension_bundle.twig.paths:
-    class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath
-    arguments: ['@routing.utils', '@parameter_bag']
-
-  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath: '@twig_extension_bundle.twig.paths'
+  ###### Unused ##########
 
   twig_extension_bundle.encore:
     class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore
