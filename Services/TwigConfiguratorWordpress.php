@@ -44,6 +44,10 @@ class TwigConfiguratorWordpress
             $this->configuration = $this->containerBag->get('twig');
         }
 
+        if ($this->containerBag->has('twig_config')) {
+            $this->configuration = array_merge($this->configuration, $this->containerBag->get('twig_config'));
+        }
+
         $this->configuration['web_paths'] = (array)$this->configuration['paths'];
         $this->configuration['paths'] = $this->checkTwigTemplatesPath((array)$this->configuration['paths']);
 
