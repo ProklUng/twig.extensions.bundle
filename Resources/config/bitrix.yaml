@@ -15,6 +15,15 @@ services:
     factory: ['@twig_extension_bundle.wordpress_config', 'addGlobals']
     tags: ['service.bootstrap']
 
+  twig_extension_bundle.native_configurator:
+    class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorNative
+    arguments:
+      - '@parameter_bag'
+
+  twig_extension_bundle.twig_paths:
+    class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorNative
+    factory: ['@twig_extension_bundle.native_configurator', 'paths']
+
   ##################
   # Twig extensions
   ##################
