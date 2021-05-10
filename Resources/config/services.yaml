@@ -109,6 +109,11 @@ services:
     tags:
       - { name: twig.extension }
 
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\SymfonyExtensions:
+    arguments: ['@twig_extension_bundle.security.csrf.token_manager']
+    tags:
+      - { name: twig.extension }
+
   Prokl\TwigExtensionsPackBundle\Twig\Extensions\Wordpress\RenderController:
     calls:
       - setContainer: ['@service_container']
@@ -126,6 +131,9 @@ services:
   twig_extension_bundle.assets:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
     arguments: ['@twig_extension_bundle.build_path']
+
+  twig_extension_bundle.security.csrf.token_manager:
+    class: Symfony\Component\Security\Csrf\CsrfTokenManager
 
   ###### Unused ##########
 
