@@ -27,8 +27,10 @@ class Configuration implements ConfigurationInterface
             ->children()
                 ->scalarNode('webpack_build_dev_path')->defaultValue('local/build/')->end()
                 ->scalarNode('webpack_build_production_path')->defaultValue('local/dist/')->end()
-                    ->arrayNode('globals')
-                    ->addDefaultsIfNotSet()
+                ->arrayNode('globals')
+                    ->useAttributeAsKey('name')
+                    ->prototype('scalar')->end()
+                    ->defaultValue([])
                     ->end()
             ->end();
 
