@@ -98,6 +98,12 @@ services:
     tags:
       - { name: twig.extension }
 
+  # Symfony Encore.
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncoreExtension:
+    arguments: ['@twig_extension_bundle.assets']
+    tags:
+      - { name: twig.extension }
+
   ###### Прочее ##########
 
   # Пути к сборке Webpack.
