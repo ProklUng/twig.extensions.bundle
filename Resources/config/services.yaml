@@ -102,13 +102,11 @@ services:
 
   # Пути к сборке Webpack.
   twig_extension_bundle.build_path:
-    public: false
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
     factory: ['Prokl\TwigExtensionsPackBundle\Services\Assets', 'pathBuild']
     arguments: ['%kernel.debug%', '%build.dev.path%', '%build.production.path%']
 
   twig_extension_bundle.assets:
-    public: false
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
     arguments: ['@twig_extension_bundle.build_path']
 
@@ -118,5 +116,8 @@ services:
 
   Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath: '@twig_extension_bundle.twig.paths'
 
-  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore:
+  twig_extension_bundle.encore:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore
     arguments: ['@twig_extension_bundle.assets']
+
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore: '@twig_extension_bundle.encore'
