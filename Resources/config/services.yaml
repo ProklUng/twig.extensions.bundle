@@ -104,7 +104,7 @@ services:
   twig_extension_bundle.build_path:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
     factory: ['Prokl\TwigExtensionsPackBundle\Services\Assets', 'pathBuild']
-    arguments: ['%kernel.debug%', '%build.dev.path%', '%build.production.path%']
+    arguments: ['%kernel.debug%', '%twig_extension_bundle.build_dev_path%', '%twig_extension_bundle.build_production_path%']
 
   twig_extension_bundle.assets:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets

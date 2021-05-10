@@ -6,13 +6,18 @@
 
 `composer require proklung/twig-extensions-bundle`
 
-Необходимы переменные `build.dev.path` и `build.production.path` в контейнере.
+## Конфигурация
+
+Файл `local/configs/packages/twig_extension_pack.yaml`:
 
 ```yaml
-parameters:
-  build.dev.path: 'local/build/'
-  build.production.path: 'local/dist/'
+twig_extension_pack:
+  # Путь к dev сборке Webpack
+  webpack_build_dev_path: 'local/build/'
+  # Путь к production сборке Webpack
+  webpack_build_production_path: 'local/dist/'
 ```
+
 ## Расширения
 
 **render**
@@ -68,7 +73,6 @@ json_decode как твиговская функция.
 Wordpress:
 
 - `apply_filter` - apply_filter.
-
 
 ### Битриксовые
 

@@ -28,6 +28,12 @@ class TwigExtensionsPackExtension extends Extension
      */
     public function load(array $configs, ContainerBuilder $container) : void
     {
+        $configuration = new Configuration();
+        $config = $this->processConfiguration($configuration, $configs);
+
+        $container->setParameter('twig_extension_bundle.build_dev_path', $config['webpack_build_dev_path']);
+        $container->setParameter('twig_extension_bundle.build_production_path', $config['webpack_build_production_path']);
+
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(__DIR__ . self::DIR_CONFIG)
@@ -66,6 +72,6 @@ class TwigExtensionsPackExtension extends Extension
      */
     public function getAlias() : string
     {
-        return 'twig_extension_spack';
+        return 'twig_extension_pack';
     }
 }
