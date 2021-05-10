@@ -47,6 +47,15 @@ twig_extension_pack:
 {{ render_service('app.controller.user', 'detail', {'user': user}, {'eventDispatcher': 'event_dispatcher'}) }}
 ~~~
 
+**renderController**
+
+~~~twig
+
+Рендер контроллера.
+
+{{ renderController('Local\Buffering\Buffer::showBuffered', 'additional-styles') }}
+~~~
+
 **dump**
 
 Стандартный твиговский dump.
@@ -69,6 +78,7 @@ json_decode как твиговская функция.
 - `absolute_url` - абсолютный (со схемой и хостом) по url
 - `path` - путь по роуту и его параметрам
 - `naturaljoin`
+- `csrf_token` - проверка csrf токена приложения
 
 Wordpress:
 
