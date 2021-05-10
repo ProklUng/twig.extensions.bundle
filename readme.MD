@@ -16,6 +16,13 @@ twig_extension_pack:
   webpack_build_dev_path: 'local/build/'
   # Путь к production сборке Webpack
   webpack_build_production_path: 'local/dist/'
+  globals:
+    secret_key: 'xxxx'
+    # Отсылка к переменной сервис-провайдера.
+    kernel.debug: '%kernel.debug%'
+    path_build: 'webpack.build.path'
+    # Сервисы указывать без @ - иначе не компилируется контейнер.
+    app: 'native.app.twig.variable'  
 ```
 
 ## Расширения

@@ -4,6 +4,17 @@ services:
     autoconfigure: true
     public: true
 
+  twig_extension_bundle.wordpress_config:
+    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
+    arguments: ['@twig.instance', '%twig.globals%']
+    calls:
+      - setContainer: ['@service_container']
+
+  twig_extension_bundle.config_init:
+    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
+    factory: ['@twig_extension_bundle.wordpress_config', 'addGlobals']
+    tags: ['service.bootstrap']
+
   ##################
   # Twig extensions
   ##################

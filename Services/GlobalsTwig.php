@@ -15,13 +15,14 @@ class GlobalsTwig
     use ContainerAwareTrait;
 
     /**
-     * @var array $globals
+     * @var array $globals Секция globals из конфига.
      */
     private $globals;
 
     /**
      * GlobalsTwig constructor.
-     * @param array $globals
+     *
+     * @param array $globals Секция globals из конфига.
      */
     public function __construct(array $globals)
     {

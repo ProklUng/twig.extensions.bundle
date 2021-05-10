@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Container;
 class TwigConfig
 {
     /**
-     * @var Container $containerBag Параметры из контейнера.
+     * @var Container $containerBag Контейнер.
      */
     private $container;
 
