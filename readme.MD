@@ -6,6 +6,13 @@
 
 `composer require proklung/twig-extensions-bundle`
 
+Необходимы переменные `build.dev.path` и `build.production.path` в контейнере.
+
+```yaml
+parameters:
+  build.dev.path: 'local/build/'
+  build.production.path: 'local/dist/'
+```
 ## Расширения
 
 **render**
