@@ -18,8 +18,6 @@ services:
   twig_extension_bundle.twig_configurator:
     class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorWordpress
     arguments: ['@parameter_bag', '@twig']
-    calls:
-      - setContainer: ['@service_container']
 
   twig_extension_bundle.templates_location:
     class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorWordpress
