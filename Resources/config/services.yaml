@@ -109,6 +109,12 @@ services:
     tags:
       - { name: twig.extension }
 
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\Wordpress\RenderController:
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
+
   ###### Прочее ##########
 
   # Пути к сборке Webpack.

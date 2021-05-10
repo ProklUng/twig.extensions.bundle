@@ -62,6 +62,31 @@ class WordpressExtension extends AbstractExtension
                     return $this->getOutput('body_class');
                 }, ['is_safe' => ['html']]
             ),
+            new TwigFunction('get_header',
+                function () : string {
+                    return $this->getOutput('get_header');
+                }, ['is_safe' => ['html']]
+            ),
+            new TwigFunction('get_footer',
+                function () : string {
+                    return $this->getOutput('get_footer');
+                }, ['is_safe' => ['html']]
+            ),
+            new TwigFunction('get_post_format',
+                function () : string {
+                    return $this->getOutput('get_post_format');
+                }, ['is_safe' => ['html']]
+            ),
+            new TwigFunction('wp_link_pages',
+                function () : string {
+                    return $this->getOutput('wp_link_pages');
+                }, ['is_safe' => ['html']]
+            ),
+            new TwigFunction('ajax_url',
+                function () : string {
+                    return admin_url('admin-ajax.php');
+                }, ['is_safe' => ['html']]
+            ),
         ];
     }
 

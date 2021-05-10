@@ -39,6 +39,8 @@ class ContainerTwigExtension extends AbstractExtension
         return [
             new TwigFunction('service', [$this, 'service']),
             new TwigFunction('param', [$this, 'param']),
+            new TwigFunction('appEnvironment', [$this, 'env']),
+            new TwigFunction('env', [$this, 'env']),
         ];
     }
 
@@ -64,5 +66,16 @@ class ContainerTwigExtension extends AbstractExtension
     public function param(string $param)
     {
         return $this->container->getParameter($param);
+    }
+
+    /**
+     * Текущее окружение.
+     *
+     * @return string
+     */
+    public function env() : string
+    {
+        /** @var string */
+        return $this->container->getParameter('kernel.environment');
     }
 }
