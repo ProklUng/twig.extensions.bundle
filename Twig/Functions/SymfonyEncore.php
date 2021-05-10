@@ -2,8 +2,7 @@
 
 namespace Prokl\TwigExtensionsPackBundle\Twig\Functions;
 
-
-use Prokl\TwigExtensionsPackBundle\Services\AssetsService;
+use Prokl\TwigExtensionsPackBundle\Services\Assets;
 use Prokl\TwigExtensionsPackBundle\Services\Exceptions\WebpackUtilException;
 
 /**
@@ -15,17 +14,17 @@ use Prokl\TwigExtensionsPackBundle\Services\Exceptions\WebpackUtilException;
 class SymfonyEncore
 {
     /**
-     * @var AssetsService $assetsService Сервис работы с ассетами.
+     * @var Assets $assetsService Сервис работы с ассетами.
      */
     private $assetsService;
 
     /**
      * SymfonyEncore constructor.
      *
-     * @param AssetsService $assetsService Сервис работы с ассетами.
+     * @param Assets $assetsService Сервис работы с ассетами.
      */
     public function __construct(
-        AssetsService $assetsService
+        Assets $assetsService
     ) {
         $this->assetsService = $assetsService;
     }
