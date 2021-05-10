@@ -3,6 +3,7 @@
 namespace Prokl\TwigExtensionsPackBundle\DependencyInjection;
 
 use Exception;
+use Prokl\TwigExtensionsPackBundle\Twig\Extensions\RouteExtension;
 use Prokl\WpSymfonyRouterBundle\Services\Utils\DispatchController;
 use Mobile_Detect;
 use Symfony\Component\Config\FileLocator;
@@ -48,6 +49,7 @@ class TwigExtensionsPackExtension extends Extension
         if (!class_exists(DispatchController::class)) {
             $container->removeDefinition('twig_extension_bundle.render');
             $container->removeDefinition('twig_extension_bundle.twig.paths');
+            $container->removeDefinition(RouteExtension::class);
         }
 
         if (!class_exists(Mobile_Detect::class)) {

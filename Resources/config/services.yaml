@@ -60,24 +60,12 @@ services:
     tags:
       - { name: twig.extension }
 
-  # render(). Работает только при установленном роутере.
-  twig_extension_bundle.render:
-    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\RenderExtension
-    arguments:
-      - '@dispatcher.controller'
-      - '@routing.utils'
-    calls:
-      - setContainer: ['@service_container']
-    tags:
-      - { name: twig.extension }
-
   # json_decode.
   Prokl\TwigExtensionsPackBundle\Twig\Extensions\JsonDecodeExtension:
     tags:
       - { name: twig.extension }
 
-  # apply_filter.
-  Prokl\TwigExtensionsPackBundle\Twig\Extensions\ApplyFilterExtension:
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\JoinExtension:
     tags:
       - { name: twig.extension }
 
@@ -98,15 +86,35 @@ services:
     tags:
       - { name: twig.extension }
 
-  #################
-  # Twig functions
-  #################
+  # Пути роутов.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\RouteExtension:
+    arguments: ['@routes.collection', '@parameter_bag']
+    tags:
+      - { name: twig.extension }
+
+  # The "sortByField" filter sorts an array of entries (objects or arrays) by the specified field's value
+  # Usage: {% for entry in master.entries|sortbyfield('ordering', 'desc') %}
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\SortByFieldExtension:
+    tags:
+      - { name: twig.extension }
+
+  ###### Прочее ##########
+
+  # Пути к сборке Webpack.
+  twig_extension_bundle.build_path:
+    public: false
+    class: Prokl\TwigExtensionsPackBundle\Services\Assets
+    factory: ['Prokl\TwigExtensionsPackBundle\Services\Assets', 'pathBuild']
+    arguments: ['%kernel.debug%', '%build.dev.path%', '%build.production.path%']
+
+  twig_extension_bundle.assets:
+    public: false
+    class: Prokl\TwigExtensionsPackBundle\Services\Assets
+    arguments: ['@twig_extension_bundle.build_path']
+
 
   twig_extension_bundle.twig.paths:
     class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath
     arguments: ['@routing.utils', '@parameter_bag']
 
-  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath: '@twig_extension_bundle.twig.paths'
 
-  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore:
-    arguments: ['@assets.manager']

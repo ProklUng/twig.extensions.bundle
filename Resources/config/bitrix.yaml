@@ -10,7 +10,34 @@ services:
 
   # Битриксовые штучки-дрючки.
   bitrix.pieces:
-    class: Prokl\Bundles\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\BitrixPiecesExtension
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\BitrixPiecesExtension
     arguments: ['%kernel.project_dir%']
+    tags:
+      - { name: twig.extension }
+
+  # Битриксовые функции.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\BitrixExtension:
+    tags:
+      - { name: twig.extension }
+
+  # Супер-глобалы.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\PhpGlobalsExtension:
+    tags:
+      - { name: twig.extension }
+
+  # Symfony Encore.
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncoreExtension:
+    arguments: ['@twig_extension_bundle.assets']
+    tags:
+      - { name: twig.extension }
+
+  # render()
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\RenderExtension:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix\RenderExtension
+    arguments:
+      - '@dispatcher.controller'
+      - '@routes.collection'
+    calls:
+      - setContainer: ['@service_container']
     tags:
       - { name: twig.extension }

@@ -2,8 +2,9 @@
 
 namespace Prokl\TwigExtensionsPackBundle\Twig\Functions;
 
-use Fedy\Services\AssetsService;
-use Fedy\Util\Exceptions\WebpackUtilException;
+
+use Prokl\TwigExtensionsPackBundle\Services\AssetsService;
+use Prokl\TwigExtensionsPackBundle\Services\Exceptions\WebpackUtilException;
 
 /**
  * Class SymfonyEncore

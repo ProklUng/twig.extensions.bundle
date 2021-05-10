@@ -13,3 +13,19 @@ services:
     class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Wordpress\WordpressExtension
     tags:
       - { name: twig.extension }
+
+  # apply_filter.
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\ApplyFilterExtension:
+    tags:
+      - { name: twig.extension }
+
+  # render(). Работает только при установленном роутере.
+  twig_extension_bundle.render:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\RenderExtension
+    arguments:
+      - '@dispatcher.controller'
+      - '@routing.utils'
+    calls:
+      - setContainer: ['@service_container']
+    tags:
+      - { name: twig.extension }
