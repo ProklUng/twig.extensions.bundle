@@ -29,7 +29,7 @@ class TwigConfiguratorNative
     {
         $this->containerBag = $containerBag;
         if ($this->containerBag->has('twig_config')) {
-            $this->config = (array)$this->containerBag->has('twig_config');
+            $this->config = (array)$this->containerBag->get('twig_config');
         }
     }
 
