@@ -35,7 +35,7 @@ services:
   # Глобальные переменные. Секция globals конфигурации twig.
   twig_extension_bundle.global_extension:
     class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\GlobalsExtension
-    arguments: ['%twig%']
+    arguments: ['%twig_config%']
     calls:
       - setContainer: ['@service_container']
     tags:
