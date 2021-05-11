@@ -30,9 +30,12 @@
         "symfony/config": "~4|~5",
         "symfony/framework-bundle": "^4.0 || ^5.0",
         "symfony/security-csrf": "^4.0 || ^5.0",
+        "symfony/twig-bridge": "^4.0 || ^5.0",
+        "symfony/mime": "^4.0 || ^5.0",
         "twig/twig": "^1.43|^2.13",
         "tijsverkoyen/css-to-inline-styles": "^2.2",
         "proklung/base-exception": "^1.0"
+
     },
     "require-dev": {
         "proklung/phpunit-testing-tools": "^1.0",

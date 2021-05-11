@@ -122,6 +122,30 @@ services:
 
   ###### Прочее ##########
 
+  # Трансфер переменных приложения в Твиг.
+  app.twig.variable:
+    class: Prokl\TwigExtensionsPackBundle\Services\Handlers\AppVariable
+    arguments: ['@session.instance', '@global.request']
+
+  Prokl\TwigExtensionsPackBundle\Services\Handlers\AppVariable: '@app.twig.variable'
+
+  # Нативные глобальные переменные Твига.
+  native.app.twig.variable:
+    class: Symfony\Bridge\Twig\AppVariable
+    calls:
+      - [setEnvironment, ["%kernel.environment%"]]
+      - [setDebug, ["%kernel.debug%"]]
+      - [setRequestStack, ['@request_stack']]
+
+  Symfony\Bridge\Twig\AppVariable: '@native.app.twig.variable'
+
+  # Symfony/twig-bridge
+  Symfony\Bridge\Twig\Mime\BodyRenderer:
+    class: Symfony\Bridge\Twig\Mime\BodyRenderer
+    arguments: ['@twig.instance']
+
+  Symfony\Component\Mime\BodyRendererInterface: '@Symfony\Bridge\Twig\Mime\BodyRenderer'
+
   # Пути к сборке Webpack.
   twig_extension_bundle.build_path:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets

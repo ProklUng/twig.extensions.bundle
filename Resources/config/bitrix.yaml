@@ -24,6 +24,10 @@ services:
     class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorNative
     factory: ['@twig_extension_bundle.native_configurator', 'paths']
 
+  twig_extension_bundle.config:
+    class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorNative
+    factory: ['@twig_extension_bundle.native_configurator', 'config']
+
   ##################
   # Twig extensions
   ##################
