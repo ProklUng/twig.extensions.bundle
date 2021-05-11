@@ -11,6 +11,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore;
+use Prokl\BitrixSymfonyRouterBundle\Services\Utils\RouteChecker;
 
 /**
  * Class TwigExtensionsPackExtension
@@ -52,18 +53,23 @@ class TwigExtensionsPackExtension extends Extension
         // Определяю Wordpress
         if (defined('ABSPATH')) {
             $loader->load('wordpress.yaml');
+
+            // Если не установлен Symfony Router Bundle, то удаляю расширение render.
+            if (!class_exists(DispatchController::class)) {
+                $container->removeDefinition('twig_extension_bundle.render');
+                $container->removeDefinition('twig_extension_bundle.twig.paths');
+                $container->removeDefinition(RouteExtension::class);
+            }
         }
 
         // Определяю Битрикс.
         if (defined('B_PROLOG_INCLUDED') && B_PROLOG_INCLUDED === true) {
             $loader->load('bitrix.yaml');
-        }
 
-        // Если не установлен Symfony Router Bundle, то удаляю расширение render.
-        if (!class_exists(DispatchController::class)) {
-            $container->removeDefinition('twig_extension_bundle.render');
-            $container->removeDefinition('twig_extension_bundle.twig.paths');
-            $container->removeDefinition(RouteExtension::class);
+            if (!class_exists(RouteChecker::class)) {
+                $container->removeDefinition('Prokl\TwigExtensionsPackBundle\Twig\Functions\Bitrix\SymfonyTwigPath');
+                $container->removeDefinition(RouteExtension::class);
+            }
         }
 
         if (!class_exists(Mobile_Detect::class)) {

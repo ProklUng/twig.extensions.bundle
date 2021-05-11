@@ -104,11 +104,6 @@ services:
     tags:
       - { name: twig.extension }
 
-  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath:
-    arguments: ['@routing.utils', '@parameter_bag']
-    tags:
-      - { name: twig.extension }
-
   Prokl\TwigExtensionsPackBundle\Twig\Extensions\SymfonyExtensions:
     arguments: ['@twig_extension_bundle.security.csrf.token_manager']
     tags:

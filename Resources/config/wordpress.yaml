@@ -27,6 +27,12 @@ services:
   # Twig extensions
   ##################
 
+
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath:
+    arguments: ['@routing.utils', '@parameter_bag']
+    tags:
+      - { name: twig.extension }
+
   # Функции Wordpress.
   wordpress.functions:
     class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Wordpress\WordpressExtension
