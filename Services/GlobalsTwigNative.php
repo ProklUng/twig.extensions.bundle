@@ -3,6 +3,7 @@
 namespace Prokl\TwigExtensionsPackBundle\Services;
 
 use Exception;
+use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Twig\Environment;
 
@@ -46,7 +47,14 @@ class GlobalsTwigNative
     {
         if ($this->container->hasParameter('twig.globals')) {
             foreach ((array)$this->container->getParameter('twig.globals') as $name => $global) {
-                $this->twig->addGlobal($name, $global);
+                if (is_string($name)) {
+                    $this->twig->addGlobal($name, $global);
+                    continue;
+                }
+
+                throw new Exception(
+                  'Global Twig variable name must be string! Got ' . gettype($name)
+                );
             }
         }
     }

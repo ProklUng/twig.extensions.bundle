@@ -53,14 +53,17 @@ class GlobalsExtension extends AbstractExtension implements GlobalsInterface
     {
         $result = [];
 
+        /**
+         * @var string $name
+         * @var mixed  $global
+         */
         foreach ($this->config as $name => $global) {
             if (!$global) {
                 continue;
             }
-            if ($this->container->has((string)$global)) {
-                $result[$name] = $this->container->get(
-                    $global
-                );
+
+            if (is_string($global) && $this->container->has($global)) {
+                $result[$name] = $this->container->get($global);
 
                 continue;
             }

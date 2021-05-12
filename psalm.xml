@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <psalm
-    errorLevel="3"
+    errorLevel="1"
     resolveFromConfigFile="true"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns="https://getpsalm.org/schema/config"
@@ -56,11 +56,71 @@
                 <file name="Services/GlobalsTwig.php"/>
             </errorLevel>
         </UndefinedFunction>
+        <MixedReturnStatement>
+            <errorLevel type="suppress">
+                <file name="Twig/Extensions/Wordpress/WordpressExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Services/GlobalsTwig.php"/>
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+            </errorLevel>
+        </MixedReturnStatement>
         <UndefinedConstant>
             <errorLevel type="suppress">
                 <file name="Services/TwigConfiguratorWordpress.php"/>
                 <file name="Twig/Extensions/Bitrix/BitrixPiecesExtension.php"/>
             </errorLevel>
         </UndefinedConstant>
+        <MixedInferredReturnType>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/RenderExtension.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Twig/Extensions/Wordpress/RenderController.php"/>
+                <file name="Twig/Extensions/Wordpress/WordpressExtension.php"/>
+            </errorLevel>
+        </MixedInferredReturnType>
+        <MixedAssignment>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/RenderExtension.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Twig/Extensions/VarDumpExtension.php"/>
+                <file name="Twig/Extensions/SortByFieldExtension.php"/>
+                <file name="Services/Assets.php"/>
+            </errorLevel>
+        </MixedAssignment>
+        <MixedMethodCall>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/RenderExtension.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Twig/Extensions/VarDumpExtension.php"/>
+                <file name="Twig/Extensions/Wordpress/RenderController.php"/>
+            </errorLevel>
+        </MixedMethodCall>
+        <InvalidArgument>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/RenderExtension.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+            </errorLevel>
+        </InvalidArgument>
     </issueHandlers>
 </psalm>

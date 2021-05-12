@@ -130,14 +130,14 @@ class RenderExtension extends AbstractExtension
 
         if ($this->dispatchController->dispatch($resolvedController)) {
             $response = $this->dispatchController->getResponse();
-            $content =  $response->getContent();
+            $content =  (string)$response->getContent();
 
             // Ответ может быть зазипован.
             $isGzipped = mb_strpos($content, "\x1f" . "\x8b" . "\x08") === 0;
             if ($isGzipped) {
                 $content = gzdecode($content);
             }
-            echo $content;
+            echo (string)$content;
 
             return;
         }
@@ -202,13 +202,12 @@ class RenderExtension extends AbstractExtension
      */
     private function getRouteInfo(string $uri, array $options = []) : ?ControllerReference
     {
-        // Удалить служебные роуты.
         $matcher = new UrlMatcher($this->routeCollection, new RequestContext());
 
         try {
             $routeData = $matcher->match($uri);
 
-            $controllerRoute = $routeData['_controller'];
+            $controllerRoute = (string)$routeData['_controller'];
             unset($routeData['_controller'], $routeData['_route']);
 
             return new ControllerReference(

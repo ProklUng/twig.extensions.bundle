@@ -34,6 +34,6 @@ class CssInlinerExtension extends AbstractExtension
             $inliner = new CssToInlineStyles();
         }
 
-        return $inliner->convert($body, implode("\n", $css));
+        return (string)$inliner->convert($body, implode("\n", $css));
     }
 }

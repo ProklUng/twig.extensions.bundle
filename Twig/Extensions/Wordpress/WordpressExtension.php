@@ -93,8 +93,8 @@ class WordpressExtension extends AbstractExtension
     /**
      * Return function echo.
      *
-     * @param mixed $function Функция.
-     * @param array $args     Аргументы.
+     * @param string|callable $function Функция.
+     * @param array           $args     Аргументы.
      *
      * @return string
      */
@@ -107,7 +107,7 @@ class WordpressExtension extends AbstractExtension
     }
 
     /**
-     * @param mixed $function_name Название функции.
+     * @param string|callable $function_name Название функции.
      *
      * @return mixed
      */

@@ -47,6 +47,10 @@ class JoinExtension extends AbstractExtension
         $result = [];
         $numeric = true;
 
+        /**
+         * @var string|integer $key
+         * @var mixed          $item
+         */
         foreach ($array as $key => $item) {
             if (is_numeric($key)) {
                 $result[] = "'".$item."'";
@@ -69,6 +73,11 @@ class JoinExtension extends AbstractExtension
     private function arrayMapAssoc(array $array) : array
     {
         $r = [];
+
+        /**
+         * @var string|integer $key
+         * @var mixed          $value
+         */
         foreach ($array as $key => $value) {
             $r[$key] = "'$key' => $value";
         }

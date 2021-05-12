@@ -49,6 +49,9 @@ class HtmlExtension extends AbstractExtension
     public function twig_html_classes(...$args): string
     {
         $classes = [];
+        /**
+         * @var mixed $arg
+         */
         foreach ($args as $i => $arg) {
             if (is_string($arg)) {
                 $classes[] = $arg;

@@ -66,8 +66,13 @@ class RenderServiceExtension extends AbstractExtension
         }
 
         $injectParameters = [];
+
+        /**
+         * @var string|integer $key
+         * @var mixed          $value
+         */
         foreach ($services as $key => $value) {
-            if ($this->container->has($value)) {
+            if (is_string($value) && $this->container->has($value)) {
                 $injectParameters[$key] = $this->container->get($value);
             }
         }
@@ -115,8 +120,10 @@ class RenderServiceExtension extends AbstractExtension
         foreach ($reflectionParameters as $reflectionParameter) {
             $refName = $reflectionParameter->getName();
             if (!array_key_exists($refName, $parameters) && $reflectionParameter->isDefaultValueAvailable()) {
+                /** @psalm-suppress MixedAssignment */
                 $injectParameters[$refName] = $reflectionParameter->getDefaultValue();
             } else {
+                /** @psalm-suppress MixedAssignment */
                 $injectParameters[$refName] = $parameters[$refName];
             }
         }

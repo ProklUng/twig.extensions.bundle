@@ -63,8 +63,8 @@ class SortByFieldExtension extends AbstractExtension
             /** @psalm-suppress InvalidScalarArgument */
             @usort($content,
                 /**
-                 * @var mixed $a
-                 * @var mixed $b
+                 * @var mixed        $a
+                 * @var mixed|object $b
                  *
                  * @return float|int
                  * @psalm-suppress MissingClosureParamType

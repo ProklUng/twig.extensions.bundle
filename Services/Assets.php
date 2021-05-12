@@ -34,7 +34,7 @@ class Assets
     /**
      * @var array $entrypoints Содержимое entrypoints.json.
      */
-    private $entrypoints;
+    private $entrypoints = [];
 
     /**
      * Assets constructor.
@@ -57,15 +57,16 @@ class Assets
      * Получить путь до файла-ассета по его имени
      *
      * @param string $entryName Имя файла-ассета.
+     *
      * @return string Путь до ассета.
      * @throws Exception Стандартное исключение.
      */
-    public function getEntry(string $entryName)
+    public function getEntry(string $entryName) : string
     {
         $entryPath = $this->base . $entryName;
-        $entry = $this->manifest[ $entryPath ];
+        $entry = (string)$this->manifest[ $entryPath ];
 
-        if (is_null($entry)) {
+        if (!$entry) {
             throw new Exception('Entry `' . $entryPath .'` not found in manifest file!');
         }
 
@@ -83,18 +84,18 @@ class Assets
      *
      * @since 08.11.2020
      */
-    public function getWebpackJsFiles($entrypoint)
+    public function getWebpackJsFiles(string $entrypoint) : array
     {
         if (!array_key_exists($entrypoint, $this->getEntrypoints())) {
             throw new InvalidArgumentException(sprintf('Invalid entrypoint "%s"', $entrypoint));
         }
 
-        $files = $this->getEntrypoints()[$entrypoint];
+        $files = (array)$this->getEntrypoints()[$entrypoint];
         if (!array_key_exists('js', $files)) {
             return [];
         }
 
-        return $files['js'];
+        return (array)$files['js'];
     }
 
     /**
@@ -108,18 +109,18 @@ class Assets
      *
      * @since 08.11.2020
      */
-    public function getWebpackCssFiles($entrypoint)
+    public function getWebpackCssFiles(string $entrypoint) : array
     {
         if (!array_key_exists($entrypoint, $this->getEntrypoints())) {
             throw new InvalidArgumentException(sprintf('Invalid entrypoint "%s"', $entrypoint));
         }
 
-        $files = $this->getEntrypoints()[$entrypoint];
+        $files = (array)$this->getEntrypoints()[$entrypoint];
         if (!array_key_exists('css', $files)) {
             return [];
         }
 
-        return $files['css'];
+        return (array)$files['css'];
     }
 
     /**

@@ -105,6 +105,11 @@ class ArrayExtension extends AbstractExtension
         }
 
         $str = '';
+
+        /**
+         * @var string|integer $key
+         * @var mixed          $value
+         */
         foreach ($array as $key => $value) {
             if ($value === null || $value === false) {
                 continue;
@@ -114,7 +119,7 @@ class ArrayExtension extends AbstractExtension
                 $value = $key;
             }
 
-            $str .= ' ' . $key . '="' . addcslashes($value, '"') . '"';
+            $str .= ' ' . $key . '="' . addcslashes((string)$value, '"') . '"';
         }
 
         return trim($str);

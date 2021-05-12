@@ -87,6 +87,7 @@ class RenderController extends AbstractExtension
         try {
             if (!$this->isStaticClassMethod($parsedClassName, $clearMethod)
                 && class_exists($parsedClassName)
+                /** @psalm-suppress MixedMethodCall */
                 && method_exists($resolvedInstance = new $parsedClassName, $clearMethod)
             ) {
                 ob_start();
@@ -101,7 +102,7 @@ class RenderController extends AbstractExtension
         }
 
         if (is_callable($tryAction)) {
-            return $tryAction(...$params);
+            return (string)$tryAction(...$params);
         }
 
         return '';

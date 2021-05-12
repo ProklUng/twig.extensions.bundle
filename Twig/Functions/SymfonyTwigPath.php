@@ -91,8 +91,8 @@ class SymfonyTwigPath extends AbstractExtension
             return '';
         }
 
-        $schema = $this->parameterBag->get('kernel.schema');
-        $host = $this->parameterBag->get('kernel.http.host');
+        $schema = (string)$this->parameterBag->get('kernel.schema');
+        $host = (string)$this->parameterBag->get('kernel.http.host');
 
         return $schema . '://' . $host . $relativePath;
     }

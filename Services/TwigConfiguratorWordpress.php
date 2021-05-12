@@ -43,11 +43,11 @@ class TwigConfiguratorWordpress
         $this->twig = $twig;
 
         if ($this->containerBag->has('twig')) {
-            $this->configuration = $this->containerBag->get('twig');
+            $this->configuration = (array)$this->containerBag->get('twig');
         }
 
         if ($this->containerBag->has('twig_config')) {
-            $this->configuration = array_merge($this->configuration, $this->containerBag->get('twig_config'));
+            $this->configuration = array_merge($this->configuration, (array)$this->containerBag->get('twig_config'));
         }
 
         $this->configuration['web_paths'] = (array)$this->configuration['paths'];
@@ -173,7 +173,7 @@ class TwigConfiguratorWordpress
             }
 
             throw new RuntimeException(
-                'Не найден путь к шаблону Twig: '.$path
+                'Не найден путь к шаблону Twig: '. (string)$path
             );
         }
 

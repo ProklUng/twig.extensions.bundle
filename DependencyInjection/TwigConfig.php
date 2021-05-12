@@ -58,12 +58,15 @@ class TwigConfig
      */
     public function processGlobals(): array
     {
-        if (count($this->configuration['globals']) === 0) {
+        if (count((array)$this->configuration['globals']) === 0) {
             return [];
         }
 
         $result = [];
 
+        /**
+         * @var mixed $varKey
+         */
         foreach ($this->configuration['globals'] as $varKey => $parameterValue) {
             if (!$varKey) {
                 continue;
