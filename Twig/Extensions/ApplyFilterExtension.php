@@ -61,14 +61,14 @@ class ApplyFilterExtension extends AbstractExtension
 
         $template = sprintf('{{ value | %s }}', $name);
         if ($parameters) {
-            $contextArguments = null;
+            $contextArguments = '';
 
             if (is_array($parameters) && !$skipChangeParameters) {
                 $index = 0;
                 foreach ($parameters as $parameter) {
                     $context['context_'.$index] = $parameter;
 
-                    if ($contextArguments === null) {
+                    if ($contextArguments === '') {
                         $contextArguments = 'context_'.$index;
                     } else {
                         $contextArguments .= ', context_'.$index;

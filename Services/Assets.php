@@ -168,7 +168,7 @@ class Assets
      */
     private function getEntrypoints(): array
     {
-        if (null === $this->entrypoints) {
+        if (count($this->entrypoints) === 0) {
             $file = $this->base . DIRECTORY_SEPARATOR . 'entrypoints.json';
             $content = file_get_contents($file);
             if ($content === false) {
@@ -180,7 +180,7 @@ class Assets
                 throw new RuntimeException(\sprintf('Unable to decode json file "%s"', $file));
             }
 
-            $this->entrypoints = $json['entrypoints'];
+            $this->entrypoints = (array)$json['entrypoints'];
         }
 
         return $this->entrypoints;

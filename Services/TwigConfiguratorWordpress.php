@@ -11,6 +11,8 @@ use Timber\Timber;
  * @package Prokl\TwigExtensionsPackBundle\Services
  *
  * @since 10.05.2021
+ *
+ * @psalm-suppress UndefinedConstant
  */
 class TwigConfiguratorWordpress
 {

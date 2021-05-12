@@ -6,7 +6,6 @@ use Exception;
 use Prokl\TwigExtensionsPackBundle\Services\Assets;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_ExtensionInterface;
 
 /**
  * Class SymfonyEncoreExtension
@@ -14,7 +13,7 @@ use Twig_ExtensionInterface;
  *
  * @since 22.10.2020
  */
-class SymfonyEncoreExtension extends AbstractExtension implements Twig_ExtensionInterface
+class SymfonyEncoreExtension extends AbstractExtension
 {
     /**
      * @var Assets $assetsService Сервис работы с ассетами.
@@ -44,11 +43,6 @@ class SymfonyEncoreExtension extends AbstractExtension implements Twig_Extension
 
     /**
      * {@inheritdoc}
-     */
-    /**
-     * Twig functions
-     *
-     * @return array
      */
     public function getFunctions()
     {

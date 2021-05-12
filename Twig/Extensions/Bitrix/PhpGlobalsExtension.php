@@ -2,21 +2,29 @@
 
 namespace Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix;
 
+use Twig\Extension\AbstractExtension;
+
 /**
  * Class BitrixExtension. Расширение, которое добавляет глобалки php в шаблоны
  *
  * @package Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix
  */
-class PhpGlobalsExtension extends \Twig_Extension
+class PhpGlobalsExtension extends AbstractExtension
 {
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName() : string
     {
         return 'php_globals_extension';
     }
 
-    public function getGlobals()
+    /**
+     * @return array[]
+     */
+    public function getGlobals() : array
     {
-        return array(
+        return [
             '_SERVER'       => $_SERVER,
             '_REQUEST'      => $_REQUEST,
             '_GET'          => $_GET,
@@ -25,6 +33,6 @@ class PhpGlobalsExtension extends \Twig_Extension
             '_SESSION'      => $_SESSION,
             '_COOKIE'       => $_COOKIE,
             '_GLOBALS'      => $GLOBALS,
-        );
+        ];
     }
 }

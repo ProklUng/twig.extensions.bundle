@@ -4,7 +4,6 @@ namespace Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_ExtensionInterface;
 
 /**
  * Class BitrixPiecesExtension
@@ -12,7 +11,7 @@ use Twig_ExtensionInterface;
  *
  * @since 21.10.2020
  */
-class BitrixPiecesExtension extends AbstractExtension implements Twig_ExtensionInterface
+class BitrixPiecesExtension extends AbstractExtension
 {
     /** @var string $documentRoot DOCUMENT_ROOT */
     private $documentRoot;
@@ -41,11 +40,6 @@ class BitrixPiecesExtension extends AbstractExtension implements Twig_ExtensionI
     /**
      * {@inheritdoc}
      */
-    /**
-     * Twig functions
-     *
-     * @return array
-     */
     public function getFunctions()
     {
         return [
@@ -64,6 +58,7 @@ class BitrixPiecesExtension extends AbstractExtension implements Twig_ExtensionI
         global $SiteExpireDate; // Убираем надпись о просрочке сайта.
         global $APPLICATION;
 
+        /** @psalm-suppress UnresolvableInclude */
         require($this->documentRoot . '/bitrix/modules/main/include/prolog.php');
     }
 
@@ -75,7 +70,9 @@ class BitrixPiecesExtension extends AbstractExtension implements Twig_ExtensionI
     public function getFooter()
     {
         global $APPLICATION;
+
         // Так исключается shutdown в системе обработки футеров Битрикса.
+        /** @psalm-suppress UnresolvableInclude */
         require($this->documentRoot . SITE_TEMPLATE_PATH .'/footer.php');
     }
 }

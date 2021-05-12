@@ -5,9 +5,7 @@ namespace Prokl\TwigExtensionsPackBundle\Twig\Extensions;
 use InvalidArgumentException;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
-use Twig_ExtensionInterface;
 use Exception;
-use Twig_SimpleFilter;
 
 /**
  * Class SortByFieldExtension
@@ -16,23 +14,23 @@ use Twig_SimpleFilter;
  * @since 11.10.2020
  * @see https://github.com/victorhaggqvist/Twig-sort-by-field/blob/master/src/SortByFieldExtension.php
  */
-class SortByFieldExtension extends AbstractExtension implements Twig_ExtensionInterface
+class SortByFieldExtension extends AbstractExtension
 {
     /**
      * @inheritDoc
      */
-    public function getName()
+    public function getName() : string
     {
         return 'sortbyfield';
     }
 
     /**
-     * @return array|TwigFilter[]|Twig_SimpleFilter[]
+     * @inheritDoc
      */
     public function getFilters()
     {
         return [
-            new Twig_SimpleFilter('sortbyfield', [$this, 'sortByFieldFilter']),
+            new TwigFilter('sortbyfield', [$this, 'sortByFieldFilter']),
         ];
     }
 
@@ -62,39 +60,48 @@ class SortByFieldExtension extends AbstractExtension implements Twig_ExtensionIn
             // Unfortunately have to suppress warnings here due to __get function
             // causing usort to think that the array has been modified:
             // usort(): Array was modified by the user comparison function
-            @usort($content, function ($a, $b) use ($sort_by, $direction) {
-                $flip = ($direction === 'desc') ? -1 : 1;
+            /** @psalm-suppress InvalidScalarArgument */
+            @usort($content,
+                /**
+                 * @var mixed $a
+                 * @var mixed $b
+                 *
+                 * @return float|int
+                 * @psalm-suppress MissingClosureParamType
+                 */
+                function ($a, $b) use ($sort_by, $direction) {
+                    $flip = ($direction === 'desc') ? -1 : 1;
 
-                if (is_array($a)) {
-                    $a_sort_value = $a[$sort_by];
-                } else {
-                    if (method_exists($a, 'get'.ucfirst($sort_by))) {
-                        $a_sort_value = $a->{'get'.ucfirst($sort_by)}();
+                    if (is_array($a)) {
+                        $a_sort_value = $a[$sort_by];
                     } else {
-                        $a_sort_value = $a->$sort_by;
+                        if (method_exists($a, 'get'.ucfirst($sort_by))) {
+                            $a_sort_value = $a->{'get'.ucfirst($sort_by)}();
+                        } else {
+                            $a_sort_value = $a->$sort_by;
+                        }
                     }
-                }
 
-                if (is_array($b)) {
-                    $b_sort_value = $b[$sort_by];
-                } else {
-                    if (method_exists($b, 'get'.ucfirst($sort_by))) {
-                        $b_sort_value = $b->{'get'.ucfirst($sort_by)}();
+                    if (is_array($b)) {
+                        $b_sort_value = $b[$sort_by];
                     } else {
-                        $b_sort_value = $b->$sort_by;
+                        if (method_exists($b, 'get'.ucfirst($sort_by))) {
+                            $b_sort_value = $b->{'get'.ucfirst($sort_by)}();
+                        } else {
+                            $b_sort_value = $b->$sort_by;
+                        }
                     }
-                }
 
-                if ($a_sort_value == $b_sort_value) {
-                    return 0;
-                } else {
-                    if ($a_sort_value > $b_sort_value) {
-                        return (1 * $flip);
+                    if ($a_sort_value == $b_sort_value) {
+                        return 0;
                     } else {
-                        return (-1 * $flip);
+                        if ($a_sort_value > $b_sort_value) {
+                            return (1 * $flip);
+                        } else {
+                            return (-1 * $flip);
+                        }
                     }
-                }
-            });
+                });
         }
 
         return $content;

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<psalm
+    errorLevel="3"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    allowStringToStandInForClass="true"
+    allowCoercionFromStringToClassConst="true"
+    findUnusedPsalmSuppress="true"
+    skipChecksOnUnresolvableIncludes="true"
+>
+    <plugins>
+        <pluginClass class="Psalm\SymfonyPsalmPlugin\Plugin"/>
+        <pluginClass class="Psalm\MockeryPlugin\Plugin"/>
+    </plugins>
+    <projectFiles>
+        <directory name="/"/>
+        <ignoreFiles>
+            <directory name="vendor"/>
+            <directory name="Tests"/>
+            <file name="DependencyInjection/Configuration.php"/>
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <PropertyNotSetInConstructor>
+            <errorLevel type="suppress">
+                <directory name="/"/>
+            </errorLevel>
+        </PropertyNotSetInConstructor>
+        <UndefinedDocblockClass>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+            </errorLevel>
+        </UndefinedDocblockClass>
+        <UndefinedClass>
+            <errorLevel type="suppress">
+                <file name="Twig/Functions/SymfonyTwigPath.php"/>
+                <file name="Twig/Functions/Bitrix/SymfonyTwigPath.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/RenderExtension.php"/>
+                <file name="Twig/Extensions/RenderExtension.php"/>
+                <file name="Twig/Extensions/MobileDetectExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+            </errorLevel>
+        </UndefinedClass>
+        <UndefinedFunction>
+            <errorLevel type="suppress">
+                <file name="Twig/Extensions/Wordpress/WordpressExtension.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixExtension.php"/>
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Services/GlobalsTwig.php"/>
+            </errorLevel>
+        </UndefinedFunction>
+        <UndefinedConstant>
+            <errorLevel type="suppress">
+                <file name="Services/TwigConfiguratorWordpress.php"/>
+                <file name="Twig/Extensions/Bitrix/BitrixPiecesExtension.php"/>
+            </errorLevel>
+        </UndefinedConstant>
+    </issueHandlers>
+</psalm>

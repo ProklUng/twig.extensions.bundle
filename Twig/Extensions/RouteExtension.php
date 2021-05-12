@@ -9,7 +9,6 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_ExtensionInterface;
 
 /**
  * Class RouteExtension
@@ -17,7 +16,7 @@ use Twig_ExtensionInterface;
  *
  * @since 22.10.2020
  */
-class RouteExtension extends AbstractExtension implements Twig_ExtensionInterface
+class RouteExtension extends AbstractExtension
 {
     /**
      * @var RouteCollection $routeCollection Коллекция роутов.
@@ -56,11 +55,6 @@ class RouteExtension extends AbstractExtension implements Twig_ExtensionInterfac
 
     /**
      * {@inheritdoc}
-     */
-    /**
-     * Twig functions
-     *
-     * @return array
      */
     public function getFunctions()
     {

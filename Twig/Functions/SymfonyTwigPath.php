@@ -7,7 +7,6 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_ExtensionInterface;
 
 /**
  * Class SymfonyTwigPath
@@ -18,7 +17,7 @@ use Twig_ExtensionInterface;
  * @since 14.10.2020 Выпиливание auto-wiring.
  * @since 01.12.2020 Внедрение сервиса routing.utils.
  */
-class SymfonyTwigPath extends AbstractExtension implements Twig_ExtensionInterface
+class SymfonyTwigPath extends AbstractExtension
 {
     /**
      * @var RouteChecker $routingService Утилиты по работе с роутингом.
@@ -56,11 +55,6 @@ class SymfonyTwigPath extends AbstractExtension implements Twig_ExtensionInterfa
 
     /**
      * {@inheritdoc}
-     */
-    /**
-     * Twig functions
-     *
-     * @return array
      */
     public function getFunctions()
     {

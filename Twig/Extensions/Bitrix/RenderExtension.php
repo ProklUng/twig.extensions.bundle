@@ -14,7 +14,6 @@ use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\RouteCollection;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Twig_ExtensionInterface;
 
 /**
  * Class RenderExtension
@@ -38,7 +37,7 @@ use Twig_ExtensionInterface;
  * 2. 'App\\Controller\\ArticleController::recentArticles'. Класс App\Controller\ArticleController,
  * метод recentArticles.
  */
-class RenderExtension extends AbstractExtension implements Twig_ExtensionInterface
+class RenderExtension extends AbstractExtension
 {
     use ContainerAwareTrait;
 
@@ -77,9 +76,7 @@ class RenderExtension extends AbstractExtension implements Twig_ExtensionInterfa
     }
 
     /**
-     * Twig functions
-     *
-     * @return array
+     * @inheritDoc
      */
     public function getFunctions()
     {

@@ -54,7 +54,7 @@ class GlobalsTwig
     public function addGlobals(Environment $twig): Environment
     {
         if ($this->container->hasParameter('twig.globals')) {
-            foreach ($this->container->getParameter('twig.globals') as $name => $global) {
+            foreach ((array)$this->container->getParameter('twig.globals') as $name => $global) {
                 $twig->addGlobal($name, $global);
             }
         }

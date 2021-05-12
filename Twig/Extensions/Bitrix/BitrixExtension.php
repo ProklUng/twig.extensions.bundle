@@ -3,22 +3,33 @@
 namespace Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix;
 
 use Bitrix\Main\Application;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Class BitrixExtension. Расширение, которое позволяет в шаблонах использовать типичные для битрикса конструкции
  *
  * @package Prokl\TwigExtensionsPackBundle\Twig\Extensions\Bitrix
  */
-class BitrixExtension extends \Twig_Extension
+class BitrixExtension extends AbstractExtension
 {
+    /**
+     * @var boolean | null
+     */
     private $isD7 = null;
 
-    public function getName()
+    /**
+     * @return string
+     */
+    public function getName() : string
     {
         return 'bitrix_extension';
     }
 
-    public function getGlobals()
+    /**
+     * @return array
+     */
+    public function getGlobals() : array
     {
         global $APPLICATION, $USER;
 
@@ -35,7 +46,10 @@ class BitrixExtension extends \Twig_Extension
 
     }
 
-    private function isD7()
+    /**
+     * @return boolean
+     */
+    private function isD7() : bool
     {
         if ($this->isD7 === null) {
             $this->isD7 = class_exists('\Bitrix\Main\Application');
@@ -45,18 +59,18 @@ class BitrixExtension extends \Twig_Extension
     }
 
     /**
-     * @return \Twig_SimpleFunction[]
+     * @return TwigFunction[]
      */
     public function getFunctions()
     {
         return array(
-            new \Twig_SimpleFunction('showError', 'ShowError'),
-            new \Twig_SimpleFunction('showMessage', 'ShowMessage'),
-            new \Twig_SimpleFunction('showNote', 'ShowNote'),
-            new \Twig_SimpleFunction('bitrix_sessid_post', 'bitrix_sessid_post'),
-            new \Twig_SimpleFunction('bitrix_sessid_get', 'bitrix_sessid_get'),
-            new \Twig_SimpleFunction('getMessage', $this->isD7() ? '\\Bitrix\\Main\\Localization\\Loc::getMessage' : 'GetMessage'),
-            new \Twig_SimpleFunction('showComponent', array(__CLASS__, 'showComponent')),
+            new TwigFunction('showError', 'ShowError'),
+            new TwigFunction('showMessage', 'ShowMessage'),
+            new TwigFunction('showNote', 'ShowNote'),
+            new TwigFunction('bitrix_sessid_post', 'bitrix_sessid_post'),
+            new TwigFunction('bitrix_sessid_get', 'bitrix_sessid_get'),
+            new TwigFunction('getMessage', $this->isD7() ? '\\Bitrix\\Main\\Localization\\Loc::getMessage' : 'GetMessage'),
+            new TwigFunction('showComponent', array(__CLASS__, 'showComponent')),
         );
     }
 
@@ -66,8 +80,10 @@ class BitrixExtension extends \Twig_Extension
      * @param array $arParams
      * @param \CBitrixComponent $parentComponent
      * @param array $arFunctionParams
+     *
+     * @return void
      */
-    public static function showComponent($componentName, $componentTemplate, $arParams = array(), $parentComponent = null, $arFunctionParams = array())
+    public static function showComponent($componentName, $componentTemplate, $arParams = [], $parentComponent = null, $arFunctionParams = array()) : void
     {
         global $APPLICATION;
         $APPLICATION->IncludeComponent($componentName, $componentTemplate, $arParams, $parentComponent, $arFunctionParams);

@@ -46,6 +46,6 @@ class TwigConfiguratorNative
      */
     public function config() : array
     {
-        return (array)$this->config;
+        return $this->config;
     }
 }
