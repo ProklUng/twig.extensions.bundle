@@ -17,17 +17,17 @@ use RuntimeException;
 class Assets
 {
     /**
-     * @var string
+     * @var string $base
      */
     private $base;
 
     /**
-     * @var string
+     * @var string $manifestFile
      */
     private $manifestFile;
 
     /**
-     * @var array
+     * @var array $manifest
      */
     private $manifest;
 
@@ -37,18 +37,27 @@ class Assets
     private $entrypoints = [];
 
     /**
+     * @var string $kernelProjectDir DOCUMENT_ROOT.
+     */
+    private $kernelProjectDir;
+
+    /**
      * Assets constructor.
      *
-     * @param string $base         Расположение директории ассетов относительно
-     *                             DOCUMENT_ROOT.
-     * @param string $manifestFile Имя манифест-файла.
+     * @param string $kernelProjectDir DOCUMENT_ROOT.
+     * @param string $base             Расположение директории ассетов относительно DOCUMENT_ROOT.
+     * @param string $manifestFile     Имя манифест-файла.
      *
      * @throws Exception Стандартное исключение.
      */
-    public function __construct(string $base = 'local/build/', string $manifestFile = 'manifest.json')
-    {
+    public function __construct(
+        string $kernelProjectDir,
+        string $base = 'local/build/',
+        string $manifestFile = 'manifest.json'
+    ) {
         $this->base = $base;
         $this->manifestFile = $manifestFile;
+        $this->kernelProjectDir = $kernelProjectDir;
 
         $this->loadManifest();
     }
@@ -149,7 +158,7 @@ class Assets
     private function loadManifest()
     {
         $manifest = json_decode(file_get_contents(
-            $_SERVER['DOCUMENT_ROOT'] . '/' . $this->base . $this->manifestFile
+            $this->kernelProjectDir . '/' . $this->base . $this->manifestFile
         ), true);
 
         if (! (bool) $manifest) {

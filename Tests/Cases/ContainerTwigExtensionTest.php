@@ -22,6 +22,9 @@ class ContainerTwigExtensionTest extends BaseTestCase
      */
     protected $obTestObject;
 
+    /**
+     * @inheritDoc
+     */
     protected function setUp(): void
     {
         parent::setUp();

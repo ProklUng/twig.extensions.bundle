@@ -28,8 +28,8 @@ class GlobalsTwigNative
     /**
      * GlobalsTwigNative constructor.
      *
-     * @param Environment $twig     Инстанц Твига.
-     * @param array       $globals  Секция globals из конфига.
+     * @param Environment $twig    Инстанц Твига.
+     * @param array       $globals Секция globals из конфига.
      */
     public function __construct(Environment $twig, array $globals)
     {
@@ -53,7 +53,7 @@ class GlobalsTwigNative
                 }
 
                 throw new Exception(
-                  'Global Twig variable name must be string! Got ' . gettype($name)
+                    'Global Twig variable name must be string! Got ' . gettype($name)
                 );
             }
         }

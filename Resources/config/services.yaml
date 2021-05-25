@@ -149,7 +149,7 @@ services:
 
   twig_extension_bundle.assets:
     class: Prokl\TwigExtensionsPackBundle\Services\Assets
-    arguments: ['@twig_extension_bundle.build_path']
+    arguments: ['%kernel.project_dir%', '@twig_extension_bundle.build_path']
 
   twig_extension_bundle.security.csrf.token_manager:
     class: Symfony\Component\Security\Csrf\CsrfTokenManager
@@ -158,6 +158,6 @@ services:
 
   twig_extension_bundle.encore:
     class: Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore
-    arguments: ['@twig_extension_bundle.assets']
+    arguments: ['%kernel.project_dir%', '@twig_extension_bundle.assets']
 
   Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore: '@twig_extension_bundle.encore'
