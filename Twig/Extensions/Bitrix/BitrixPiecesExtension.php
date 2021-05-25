@@ -13,7 +13,9 @@ use Twig\TwigFunction;
  */
 class BitrixPiecesExtension extends AbstractExtension
 {
-    /** @var string $documentRoot DOCUMENT_ROOT */
+    /**
+     * @var string $documentRoot DOCUMENT_ROOT
+     */
     private $documentRoot;
 
     /**

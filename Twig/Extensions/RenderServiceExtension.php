@@ -39,8 +39,8 @@ class RenderServiceExtension extends AbstractExtension
     /**
      * @param string $service
      * @param string $method
-     * @param array $parameters
-     * @param array $services
+     * @param array  $parameters
+     * @param array  $services
      *
      * @return string
      * @throws ReflectionException|RuntimeException
@@ -53,10 +53,10 @@ class RenderServiceExtension extends AbstractExtension
     ): string {
         if (!$this->container->has($service)) {
             throw new RuntimeException(
-              sprintf(
-                  'Service %s not exists.',
-                  $service
-              )
+                sprintf(
+                    'Service %s not exists.',
+                    $service
+                )
             );
         }
 
@@ -98,7 +98,7 @@ class RenderServiceExtension extends AbstractExtension
     /**
      * @param string $class
      * @param string $method
-     * @param array $parameters
+     * @param array  $parameters
      *
      * @return array
      * @throws ReflectionException

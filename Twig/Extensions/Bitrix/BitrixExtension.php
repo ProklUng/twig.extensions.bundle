@@ -43,7 +43,6 @@ class BitrixExtension extends AbstractExtension
         }
 
         return $coreVariables;
-
     }
 
     /**
@@ -75,11 +74,11 @@ class BitrixExtension extends AbstractExtension
     }
 
     /**
-     * @param string $componentName
-     * @param string $componentTemplate
-     * @param array $arParams
+     * @param string            $componentName
+     * @param string            $componentTemplate
+     * @param array             $arParams
      * @param \CBitrixComponent $parentComponent
-     * @param array $arFunctionParams
+     * @param array             $arFunctionParams
      *
      * @return void
      */

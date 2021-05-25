@@ -32,60 +32,77 @@ class WordpressExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction( 'fn', [$this, 'execFunction'] ),
-            new TwigFunction( 'bloginfo', 'bloginfo'),
-            new TwigFunction('language_attributes',
+            new TwigFunction('fn', [$this, 'execFunction']),
+            new TwigFunction('bloginfo', 'bloginfo'),
+            new TwigFunction(
+                'language_attributes',
                 function () : string {
                     return $this->getOutput('language_attributes');
                 },
                 ['is_safe' => ['html']]
             ),
-            new TwigFunction('get_site_url',
+            new TwigFunction(
+                'get_site_url',
                 static function () : string {
                     return get_site_url();
                 },
                 ['is_safe' => ['html']]
             ),
-            new TwigFunction('wp_head',
+            new TwigFunction(
+                'wp_head',
                 function () : string {
                     return $this->getOutput('wp_head');
                 },
                 ['is_safe' => ['html']]
             ),
-            new TwigFunction('wp_footer',
+            new TwigFunction(
+                'wp_footer',
                 function ()  : string {
                     return $this->getOutput('wp_footer');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('body_class',
+            new TwigFunction(
+                'body_class',
                 function () : string {
                     return $this->getOutput('body_class');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('get_header',
+            new TwigFunction(
+                'get_header',
                 function () : string {
                     return $this->getOutput('get_header');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('get_footer',
+            new TwigFunction(
+                'get_footer',
                 function () : string {
                     return $this->getOutput('get_footer');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('get_post_format',
+            new TwigFunction(
+                'get_post_format',
                 function () : string {
                     return $this->getOutput('get_post_format');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('wp_link_pages',
+            new TwigFunction(
+                'wp_link_pages',
                 function () : string {
                     return $this->getOutput('wp_link_pages');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
-            new TwigFunction('ajax_url',
+            new TwigFunction(
+                'ajax_url',
                 function () : string {
                     return admin_url('admin-ajax.php');
-                }, ['is_safe' => ['html']]
+                },
+                ['is_safe' => ['html']]
             ),
         ];
     }

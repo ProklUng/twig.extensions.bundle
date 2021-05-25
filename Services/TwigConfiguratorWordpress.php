@@ -156,6 +156,7 @@ class TwigConfiguratorWordpress
      *
      * @return array
      *
+     * @throws RuntimeException Когда не найден путь к шаблону Twig.
      * @since 26.01.2021
      */
     private function checkTwigTemplatesPath(array $paths) : array

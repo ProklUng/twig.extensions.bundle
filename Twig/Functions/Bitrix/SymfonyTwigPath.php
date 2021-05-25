@@ -32,7 +32,7 @@ class SymfonyTwigPath extends AbstractExtension
     /**
      * SymfonyTwigPath constructor.
      *
-     * @param RouteChecker      $routing      Утилиты по работе с роутингом.
+     * @param RouteChecker $routing      Утилиты по работе с роутингом.
      * @param ParameterBag $parameterBag Параметры контейнера.
      */
     public function __construct(

@@ -15,14 +15,14 @@ use Twig\TwigFunction;
 class SymfonyExtensions extends AbstractExtension
 {
     /**
-     * @var CsrfTokenManagerInterface $csrfManager
+     * @var CsrfTokenManagerInterface $csrfManager CSRF manager.
      */
     private $csrfManager;
 
     /**
      * SymfonyExtensions constructor.
      *
-     * @param CsrfTokenManagerInterface $csrfManager
+     * @param CsrfTokenManagerInterface $csrfManager CSRF manager.
      */
     public function __construct(CsrfTokenManagerInterface $csrfManager)
     {

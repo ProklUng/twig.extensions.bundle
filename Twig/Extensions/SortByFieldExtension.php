@@ -61,7 +61,8 @@ class SortByFieldExtension extends AbstractExtension
             // causing usort to think that the array has been modified:
             // usort(): Array was modified by the user comparison function
             /** @psalm-suppress InvalidScalarArgument */
-            @usort($content,
+            @usort(
+                $content,
                 /**
                  * @var mixed        $a
                  * @var mixed|object $b
@@ -101,7 +102,8 @@ class SortByFieldExtension extends AbstractExtension
                             return (-1 * $flip);
                         }
                     }
-                });
+                }
+            );
         }
 
         return $content;
@@ -110,7 +112,7 @@ class SortByFieldExtension extends AbstractExtension
     /**
      * Validate the passed $item to check if it can be sorted.
      *
-     * @param mixed $item   Collection item to be sorted.
+     * @param mixed  $item  Collection item to be sorted.
      * @param string $field Поле.
      *
      * @return boolean If collection item can be sorted

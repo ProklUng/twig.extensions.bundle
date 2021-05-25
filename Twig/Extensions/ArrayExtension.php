@@ -94,7 +94,7 @@ class ArrayExtension extends AbstractExtension
     /**
      * Cast an array to an HTML attribute string
      *
-     * @param mixed $array
+     * @param mixed $array Array.
      *
      * @return string
      */

@@ -54,8 +54,8 @@ class RenderExtension extends AbstractExtension
     /**
      * RenderExtension constructor.
      *
-     * @param DispatchControllerInterface          $dispatchController                   Исполнитель контроллеров.
-     * @param RouteCollection                      $routeCollection                      Коллекция роутов.
+     * @param DispatchControllerInterface $dispatchController Исполнитель контроллеров.
+     * @param RouteCollection             $routeCollection    Коллекция роутов.
      */
     public function __construct(
         DispatchControllerInterface $dispatchController,
@@ -167,7 +167,7 @@ class RenderExtension extends AbstractExtension
             $parsedClass = explode('::', $controller);
             if (($resolvedControllerClass = $this->getFromContainer($parsedClass[0])) === null) {
                 throw new InvalidArgumentException(
-                  'Service ' .  $parsedClass[0] . ' not exists. Forget marked his?'
+                    'Service ' .  $parsedClass[0] . ' not exists. Forget marked his?'
                 );
             }
 
@@ -214,7 +214,6 @@ class RenderExtension extends AbstractExtension
                 $controllerRoute,
                 array_merge($routeData, $options)
             );
-
         } catch (ResourceNotFoundException | MethodNotAllowedException $e) {
             return null;
         }

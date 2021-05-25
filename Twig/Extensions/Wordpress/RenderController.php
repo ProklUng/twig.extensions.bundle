@@ -44,7 +44,7 @@ class RenderController extends AbstractExtension
      * Рендер из контроллера.
      *
      * @param string $className Название класса контроллера.
-     * @param mixed  $params    Произвольное количество параметров.
+     * @param mixed  ...$params Произвольное количество параметров.
      *
      * @return string
      *

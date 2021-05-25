@@ -19,14 +19,14 @@ class GlobalsExtension extends AbstractExtension implements GlobalsInterface
     use ContainerAwareTrait;
 
     /**
-     * @var array $config
+     * @var array $config Конфигурация Twig.
      */
     private $config;
 
     /**
      * GlobalsExtension constructor.
      *
-     * @param array $twigConfig
+     * @param array $twigConfig Конфигурация Twig.
      *
      * @throws Exception
      */

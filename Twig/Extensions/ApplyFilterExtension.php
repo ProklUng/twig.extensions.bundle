@@ -40,10 +40,10 @@ class ApplyFilterExtension extends AbstractExtension
 
     /**
      * @param Environment $env
-     * @param string $name
-     * @param mixed $value
-     * @param mixed $parameters
-     * @param bool $skipChangeParameters
+     * @param string      $name
+     * @param mixed       $value
+     * @param mixed       $parameters
+     * @param boolean     $skipChangeParameters
      *
      * @return string
      *

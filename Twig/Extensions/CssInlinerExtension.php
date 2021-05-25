@@ -14,6 +14,9 @@ use Twig\TwigFilter;
  */
 class CssInlinerExtension extends AbstractExtension
 {
+    /**
+     * @inheritDoc
+     */
     public function getFilters()
     {
         return [

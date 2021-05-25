@@ -42,7 +42,6 @@ class RouteExtension extends AbstractExtension
         $this->parameterBag = $parameterBag;
     }
 
-
     /**
      * Return extension name
      *
