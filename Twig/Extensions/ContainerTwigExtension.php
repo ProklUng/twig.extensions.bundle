@@ -49,9 +49,9 @@ class ContainerTwigExtension extends AbstractExtension
      *
      * @param string $service Сервис.
      *
-     * @return object|null
+     * @return mixed|null
      */
-    public function service(string $service) : ?object
+    public function service(string $service)
     {
         return $this->container->get($service);
     }
