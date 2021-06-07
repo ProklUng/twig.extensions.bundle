@@ -115,6 +115,11 @@ services:
     tags:
       - { name: twig.extension }
 
+  # get_static
+  Prokl\TwigExtensionsPackBundle\Twig\Functions\TwigStaticReflection:
+    tags:
+      - { name: twig.extension }
+
   ###### Прочее ##########
 
   # Трансфер переменных приложения в Твиг.
