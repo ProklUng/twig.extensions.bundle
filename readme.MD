@@ -87,6 +87,7 @@ json_decode как твиговская функция.
 - `naturaljoin`
 - `csrf_token` - проверка csrf токена приложения
 - `include(<путь к файлу>)` - включение php или html файла
+- `truncate` - обрезка строки с сохранением html тэгов
 
 Wordpress:
 
