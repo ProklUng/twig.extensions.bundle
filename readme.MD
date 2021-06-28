@@ -86,6 +86,7 @@ json_decode как твиговская функция.
 - `path` - путь по роуту и его параметрам
 - `naturaljoin`
 - `csrf_token` - проверка csrf токена приложения
+- `include(<путь к файлу>)` - включение php или html файла
 
 Wordpress:
 

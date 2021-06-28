@@ -120,6 +120,12 @@ services:
     tags:
       - { name: twig.extension }
 
+  # include
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\IncludeExtension:
+    arguments: ['%kernel.project_dir%', '@filesystem']
+    tags:
+      - { name: twig.extension }
+
   ###### Прочее ##########
 
   # Трансфер переменных приложения в Твиг.

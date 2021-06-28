@@ -33,8 +33,8 @@ class TwigExtensionsPackExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $twigConfig = new TwigConfig(
-          $container,
-          $config
+            $container,
+            $config
         );
 
         $params = $twigConfig->processGlobals();
