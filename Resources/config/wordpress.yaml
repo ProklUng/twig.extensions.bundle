@@ -27,18 +27,9 @@ services:
     factory: ['@twig_extension_bundle.wordpress_config', 'hooksInit']
     tags: ['service.bootstrap']
 
-  twig_extension_bundle.twig_configurator:
-    class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorWordpress
-    arguments: ['@parameter_bag', '@twig']
-
-  twig_extension_bundle.templates_location:
-    class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorWordpress
-    factory: ['@twig_extension_bundle.twig_configurator', 'pathTemplates']
-
   ##################
   # Twig extensions
   ##################
-
 
   Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyTwigPath:
     arguments: ['@routing.utils', '@parameter_bag']
