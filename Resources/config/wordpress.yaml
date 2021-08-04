@@ -4,6 +4,18 @@ services:
     autoconfigure: true
     public: true
 
+  # Глобальные переменные Twig.
+  twig.variables:
+    class: Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables
+    arguments: ['@app.twig.variable']
+
+  Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables: '@twig.variables'
+
+  twig.variables.init.hook:
+    class: Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables
+    factory: ['@twig.variables', 'hooksInit']
+    tags: ['service.bootstrap']
+
   twig_extension_bundle.wordpress_config:
     class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwig
     arguments: ['%twig.globals%']
