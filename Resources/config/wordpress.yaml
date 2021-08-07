@@ -4,28 +4,12 @@ services:
     autoconfigure: true
     public: true
 
-  # Глобальные переменные Twig.
+  # Глобальные переменные Twig (не используется - ToDo!).
   twig.variables:
     class: Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables
     arguments: ['@app.twig.variable']
 
   Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables: '@twig.variables'
-
-  twig.variables.init.hook:
-    class: Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables
-    factory: ['@twig.variables', 'hooksInit']
-    tags: ['service.bootstrap']
-
-  twig_extension_bundle.wordpress_config:
-    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwig
-    arguments: ['%twig.globals%']
-    calls:
-      - setContainer: ['@service_container']
-
-  twig_extension_bundle.config_init_hook:
-    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwig
-    factory: ['@twig_extension_bundle.wordpress_config', 'hooksInit']
-    tags: ['service.bootstrap']
 
   ##################
   # Twig extensions

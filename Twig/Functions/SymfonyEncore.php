@@ -4,7 +4,6 @@ namespace Prokl\TwigExtensionsPackBundle\Twig\Functions;
 
 use Exception;
 use Prokl\TwigExtensionsPackBundle\Services\Assets;
-use Prokl\TwigExtensionsPackBundle\Services\Exceptions\WebpackUtilException;
 
 /**
  * Class SymfonyEncore
@@ -77,13 +76,12 @@ class SymfonyEncore
      * @param string $entry Точка входа.
      *
      * @return string
-     * @throws Exception
      */
     public function getLinkEntry(string $entry): string
     {
         try {
             return $this->assetsService->getEntry($entry);
-        } catch (WebpackUtilException $e) {
+        } catch (Exception $e) {
             return '';
         }
     }

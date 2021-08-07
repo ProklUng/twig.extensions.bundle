@@ -10,6 +10,9 @@ use Prokl\TwigExtensionsPackBundle\Services\Handlers\AppVariable;
  * @package Local\Bundles\TimberTwigBundle\Services
  *
  * @since 13.09.2020 Проброс зависимостей снаружи. Инициализация хуков через hooksInit.
+ * @since 07.08.2021 После выпиливания Timber у меня больше нет глобального твиг-контекста.
+ *
+ * @deprecated 07.08.2021
  */
 class ConfigureVariables
 {
@@ -33,16 +36,6 @@ class ConfigureVariables
     ) {
         $this->appVariable = $appVariable;
         $this->config();
-    }
-
-    /**
-     * Инициализация событий Wordpress.
-     *
-     * @return void
-     */
-    public function hooksInit() : void
-    {
-        add_filter('timber_context', [$this, 'initVariables']);
     }
 
     /**
@@ -84,21 +77,13 @@ class ConfigureVariables
             return [];
         }
 
-        $collection = collect($twigVariables);
-        $collectionResult = collect([]);
+        $collectionResult = [];
 
-        $collection->each(
-            /**
-             * @param TwigVariablesInterface $item
-             *
-             * @return void
-             */
-            static function ($item) use (&$collectionResult) : void {
-                $data = collect($item->get());
-                $collectionResult = $collectionResult->merge($data);
-            }
-        );
+        /** @var TwigVariablesInterface $variable */
+        foreach ($twigVariables as $variable) {
+            $collectionResult = array_merge($collectionResult, $variable->get());
+        }
 
-        return $collectionResult->toArray();
+        return $collectionResult;
     }
 }

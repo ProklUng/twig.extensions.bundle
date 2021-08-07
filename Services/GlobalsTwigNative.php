@@ -3,7 +3,6 @@
 namespace Prokl\TwigExtensionsPackBundle\Services;
 
 use Exception;
-use RuntimeException;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Twig\Environment;
 
