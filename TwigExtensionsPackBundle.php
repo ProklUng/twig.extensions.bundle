@@ -2,7 +2,9 @@
 
 namespace Prokl\TwigExtensionsPackBundle;
 
+use Prokl\TwigExtensionsPackBundle\DependencyInjection\CompilerPass\TwigExtensionConfigurator;
 use Prokl\TwigExtensionsPackBundle\DependencyInjection\TwigExtensionsPackExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -11,7 +13,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  *
  * @since 22.04.2021
  */
-class TwigExtensionsPackBundle extends Bundle
+final class TwigExtensionsPackBundle extends Bundle
 {
    /**
    * @inheritDoc
@@ -23,5 +25,15 @@ class TwigExtensionsPackBundle extends Bundle
         }
 
         return $this->extension;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function build(ContainerBuilder $container) : void
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new TwigExtensionConfigurator());
     }
 }
