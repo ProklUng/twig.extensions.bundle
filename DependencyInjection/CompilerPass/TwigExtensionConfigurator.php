@@ -30,6 +30,15 @@ class TwigExtensionConfigurator implements CompilerPassInterface
         // Кэшер для runtime директивы cacher.
         $cacherTwigDefinition = $container->getDefinition('twig.cache.runtime');
         $serviceCacherId = $container->getParameter('twig.cacher');
+
+        // null => значит фича отключена.
+        if ($serviceCacherId === null) {
+            $container->removeDefinition('twig.cache.runtime');
+            $container->removeDefinition('twig_runtime_configurator.init');
+            $container->removeDefinition('twig_runtime_configurator');
+            return;
+        }
+
         if (!$container->hasDefinition($serviceCacherId)) {
             throw new RuntimeException('Invalid service in cache config key:  ' . $serviceCacherId);
         }
