@@ -2,6 +2,7 @@
 
 namespace Prokl\TwigExtensionsPackBundle\DependencyInjection\CompilerPass;
 
+use RuntimeException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
@@ -24,7 +25,17 @@ class TwigExtensionConfigurator implements CompilerPassInterface
 
             $this->removeIfExists($container, 'twig.variables');
             $this->removeIfExists($container, 'Prokl\TwigExtensionsPackBundle\Services\ConfigureVariables');
-         }
+        }
+
+        // Кэшер для runtime директивы cacher.
+        $cacherTwigDefinition = $container->getDefinition('twig.cache.runtime');
+        $serviceCacherId = $container->getParameter('twig.cacher');
+        if (!$container->hasDefinition($serviceCacherId)) {
+            throw new RuntimeException('Invalid service in cache config key:  ' . $serviceCacherId);
+        }
+
+        $newCacherDef = $container->getDefinition($serviceCacherId);
+        $cacherTwigDefinition->replaceArgument(0, $newCacherDef);
     }
 
     /**
@@ -35,7 +46,8 @@ class TwigExtensionConfigurator implements CompilerPassInterface
      *
      * @return void
      */
-    private function removeIfExists(ContainerBuilder $container, string $serviceId) {
+    private function removeIfExists(ContainerBuilder $container, string $serviceId)
+    {
         if ($container->hasDefinition($serviceId)) {
             $container->removeDefinition($serviceId);
         }

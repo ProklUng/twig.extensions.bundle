@@ -16,6 +16,9 @@ twig_extension_pack:
   webpack_build_dev_path: 'local/build/'
   # Путь к production сборке Webpack
   webpack_build_production_path: 'local/dist/'
+  # Сервис кэшера (реализующий Symfony\Contracts\Cache\CacheInterface) для реализации работы директивы cache 
+  # (https://twig.symfony.com/doc/3.x/tags/cache.html)
+  cacher: 'cache.app' 
   globals:
     secret_key: 'xxxx'
     # Отсылка к переменной сервис-провайдера.
