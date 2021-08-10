@@ -34,8 +34,6 @@ class TwigExtensionConfigurator implements CompilerPassInterface
         // null => значит фича отключена.
         if ($serviceCacherId === null) {
             $container->removeDefinition('twig.cache.runtime');
-            $container->removeDefinition('twig_runtime_configurator.init');
-            $container->removeDefinition('twig_runtime_configurator');
             return;
         }
 
