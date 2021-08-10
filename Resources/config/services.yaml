@@ -11,6 +11,12 @@ services:
       - '@twig.instance'
       - !tagged_iterator twig.runtime
 
+  twig_runtime_configurator.init:
+    class: Prokl\TwigExtensionsPackBundle\Services\TwigRuntimeConfigurator
+    factory: ['@twig_runtime_configurator', 'register']
+    tags:
+      - { name: service.bootstrap }
+
   twig_extension_bundle.globals_config:
     class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
     arguments: ['@twig.instance', '%twig.globals%']
@@ -145,6 +151,12 @@ services:
     tags:
       - { name: twig.extension }
 
+  # Cache extension
+  Twig\Extra\Cache\CacheExtension:
+    class: Twig\Extra\Cache\CacheExtension
+    tags:
+      - { name: twig.extension }
+
   twig.cache.runtime:
     class: Prokl\TwigExtensionsPackBundle\Services\Runtime\CacheRuntimeLoader
     arguments:
@@ -198,4 +210,3 @@ services:
     arguments: ['%kernel.project_dir%', '@twig_extension_bundle.assets']
 
   Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore: '@twig_extension_bundle.encore'
-

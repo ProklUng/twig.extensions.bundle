@@ -36,6 +36,10 @@ class TwigRuntimeConfigurator
             $iterator = $runtimer->getIterator();
             $this->handlers[] = iterator_to_array($iterator);
         }
+
+        if (array_key_exists(0, $this->handlers)) {
+            $this->handlers = $this->handlers[0];
+        }
     }
 
     /**
