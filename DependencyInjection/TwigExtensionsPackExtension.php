@@ -40,6 +40,7 @@ class TwigExtensionsPackExtension extends Extension
         $params = $twigConfig->processGlobals();
 
         $container->setParameter('twig.globals', $params);
+        $container->setParameter('twig.cacher', $config['cacher']);
         $container->setParameter('twig_extension_bundle.build_dev_path', $config['webpack_build_dev_path']);
         $container->setParameter('twig_extension_bundle.build_production_path', $config['webpack_build_production_path']);
 

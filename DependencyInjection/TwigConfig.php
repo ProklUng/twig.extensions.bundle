@@ -27,8 +27,8 @@ class TwigConfig
     /**
      * TwigConfig constructor.
      *
-     * @param Container $container Параметры из контейнера.
-     * @param array     $configuration
+     * @param Container $container     Параметры из контейнера.
+     * @param array     $configuration Конфигурация.
      */
     public function __construct(
         Container $container,

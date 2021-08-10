@@ -4,6 +4,13 @@ services:
     autoconfigure: true
     public: true
 
+  # Runtime configurator
+  twig_runtime_configurator:
+    class: Prokl\TwigExtensionsPackBundle\Services\TwigRuntimeConfigurator
+    arguments:
+      - '@twig.instance'
+      - !tagged_iterator twig.runtime
+
   twig_extension_bundle.globals_config:
     class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
     arguments: ['@twig.instance', '%twig.globals%']
@@ -137,6 +144,13 @@ services:
     arguments: ['%kernel.project_dir%', '@filesystem']
     tags:
       - { name: twig.extension }
+
+  twig.cache.runtime:
+    class: Prokl\TwigExtensionsPackBundle\Services\Runtime\CacheRuntimeLoader
+    arguments:
+      - '@cache.app'
+    tags:
+      - { name: twig.runtime }
 
   ###### Прочее ##########
 
