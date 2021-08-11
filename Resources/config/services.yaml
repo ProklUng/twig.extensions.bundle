@@ -164,6 +164,17 @@ services:
     tags:
       - { name: twig.extension }
 
+  # Youtube
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\YouTubeExtension:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\YouTubeExtension
+    tags:
+      - { name: twig.extension }
+
+  ##########
+  # Runtimes
+  ##########
+
+  # Cache runtime
   twig.cache.runtime:
     class: Prokl\TwigExtensionsPackBundle\Services\Runtime\CacheRuntimeLoader
     arguments:

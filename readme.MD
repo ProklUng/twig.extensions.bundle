@@ -95,6 +95,18 @@ glob как твиговский фильтр.
 {% endfor %}
 ```
 
+**youtube**
+
+```twig
+{{ 'youtube_video_id'|youtube }} {# YouTube, размер по умолчанию (560x315) #}
+{{ 'youtube_video_id'|youtube(640) }} {# YouTube, заданной ширины (640x315) #}
+{{ 'youtube_video_id'|youtube(640, 480) }} {# YouTube с заданной шириной и высотой #}
+{{ 'youtube_video_id'|youtube('100%') }} {# YouTube, fluid ширина (100% x 315px) #}
+
+{% set content = '<div><p>Youtube video:</p>http://youtu.be/video_id</div>' %}
+{{ content|youtubeBoxes|raw }} {# div с p и встроенное видео #}
+```
+
 ### Прочее
 
 - `encore_entry_link_tags` - путь к CSS entry Symfony Encore
