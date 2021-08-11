@@ -21,7 +21,7 @@ return static function (ContainerConfigurator $container) {
                 service('twig'),
                 param('kernel.project_dir'),
                 param('kernel.bundles_metadata'),
-                param('twig_default_path'),
+                param('twig.default_path'),
                 service('debug.file_link_formatter')->nullOnInvalid(),
             ])
             ->tag('console.command', ['command' => 'debug:twig'])
