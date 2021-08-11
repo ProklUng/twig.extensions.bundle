@@ -20,6 +20,8 @@ twig_extension_pack:
   # (https://twig.symfony.com/doc/3.x/tags/cache.html)
   # Если null (~) - фича отключена
   cacher: 'cache.app' 
+  # Экспорт runtimes наружу (в Битрикс)
+  runtimes_export: false 
   globals:
     secret_key: 'xxxx'
     # Отсылка к переменной сервис-провайдера.
@@ -78,6 +80,20 @@ twig_extension_pack:
 **json_decode**
 
 json_decode как твиговская функция.
+
+**glob**
+
+glob как твиговский фильтр.
+
+```twig
+{% for size, icon in 'img/icons/favicon-*.png'|glob %}
+    <link rel="icon" type="image/png" sizes="{{ size }}" href="{{ asset(icon) }}">
+{% endfor %}
+
+{% for css in 'node_modules/@fortawesome/fontawesome-free-webfonts/css/*.css'|glob(false) %}
+    <link href="{{ asset(css) }}" rel="stylesheet">
+{% endfor %}
+```
 
 ### Прочее
 

@@ -157,6 +157,13 @@ services:
     tags:
       - { name: twig.extension }
 
+  # Glob
+  Prokl\TwigExtensionsPackBundle\Twig\Extensions\Glob:
+    class: Prokl\TwigExtensionsPackBundle\Twig\Extensions\Glob
+    arguments: ['%kernel.project_dir%']
+    tags:
+      - { name: twig.extension }
+
   twig.cache.runtime:
     class: Prokl\TwigExtensionsPackBundle\Services\Runtime\CacheRuntimeLoader
     arguments:
