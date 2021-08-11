@@ -7,7 +7,9 @@ use Prokl\TwigExtensionsPackBundle\Twig\Extensions\RouteExtension;
 use Prokl\WpSymfonyRouterBundle\Services\Utils\DispatchController;
 use Mobile_Detect;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Console\Application;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\PhpFileLoader;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore;
@@ -50,7 +52,16 @@ class TwigExtensionsPackExtension extends Extension
             new FileLocator(__DIR__ . self::DIR_CONFIG)
         );
 
+        $loaderPhp = new PhpFileLoader(
+            $container,
+            new FileLocator(__DIR__ . self::DIR_CONFIG)
+        );
+
         $loader->load('services.yaml');
+
+        if (class_exists(Application::class)) {
+            $loaderPhp->load('console.php');
+        }
 
         // Определяю Wordpress
         if (defined('ABSPATH')) {
