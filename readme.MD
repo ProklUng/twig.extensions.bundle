@@ -22,13 +22,6 @@ twig_extension_pack:
   cacher: 'cache.app' 
   # Экспорт runtimes наружу (в Битрикс)
   runtimes_export: false 
-  globals:
-    secret_key: 'xxxx'
-    # Отсылка к переменной сервис-провайдера.
-    kernel.debug: '%kernel.debug%'
-    path_build: 'webpack.build.path'
-    # Сервисы указывать без @ - иначе не компилируется контейнер.
-    app: 'native.app.twig.variable'  
 ```
 
 ## Расширения
