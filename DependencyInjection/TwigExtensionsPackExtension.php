@@ -34,14 +34,6 @@ class TwigExtensionsPackExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
-        $twigConfig = new TwigConfig(
-            $container,
-            $config
-        );
-
-        $params = $twigConfig->processGlobals();
-
-        $container->setParameter('twig.globals', $params);
         $container->setParameter('twig.cacher', $config['cacher']);
         $container->setParameter('twig.runtimes_export', $config['runtimes_export']);
         $container->setParameter('twig_extension_bundle.build_dev_path', $config['webpack_build_dev_path']);

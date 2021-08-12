@@ -38,7 +38,11 @@ class TwigConfiguratorNative
      */
     public function paths() : array
     {
-        return (array)$this->config['paths'];
+        if (!$this->containerBag->has('twig_paths')) {
+            return [];
+        }
+
+        return (array)$this->containerBag->get('twig_paths');
     }
 
     /**

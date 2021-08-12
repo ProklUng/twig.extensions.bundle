@@ -29,11 +29,6 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('webpack_build_production_path')->defaultValue('local/dist/')->end()
                 ->scalarNode('cacher')->defaultValue('cache.app')->end()
                 ->scalarNode('runtimes_export')->defaultValue(false)->end()
-                ->arrayNode('globals')
-                    ->useAttributeAsKey('name')
-                    ->prototype('scalar')->end()
-                    ->defaultValue([])
-                    ->end()
             ->end();
 
         return $treeBuilder;
