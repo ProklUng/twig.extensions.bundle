@@ -17,18 +17,6 @@ services:
     tags:
       - { name: service.bootstrap }
 
-  twig_extension_bundle.globals_config:
-    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
-    arguments: ['@twig.instance', '%twig.globals%']
-    calls:
-      - setContainer: ['@service_container']
-
-  twig_extension_bundle.config_init:
-    class: Prokl\TwigExtensionsPackBundle\Services\GlobalsTwigNative
-    factory: ['@twig_extension_bundle.globals_config', 'addGlobals']
-    tags:
-      - { name: 'service.bootstrap', priority: 500 }
-
   ##################
   # Twig extensions
   ##################
