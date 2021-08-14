@@ -14,6 +14,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Prokl\TwigExtensionsPackBundle\Twig\Functions\SymfonyEncore;
 use Prokl\BitrixSymfonyRouterBundle\Services\Utils\RouteChecker;
+use Symfony\Component\Stopwatch\Stopwatch;
 
 /**
  * Class TwigExtensionsPackExtension
@@ -54,6 +55,13 @@ class TwigExtensionsPackExtension extends Extension
         if (class_exists(Application::class)) {
             $loaderPhp->load('console.php');
         }
+
+        if (!class_exists(Stopwatch::class)) {
+            $container->removeDefinition('twig.extension.profiler');
+            $container->removeDefinition('twig.extension.debug.stopwatch');
+        }
+
+        $loaderPhp->load('extensions.php');
 
         // Определяю Wordpress
         if (defined('ABSPATH')) {
