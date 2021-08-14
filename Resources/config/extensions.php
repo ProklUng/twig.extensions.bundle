@@ -6,6 +6,7 @@ use Symfony\Bridge\Twig\DataCollector\TwigDataCollector;
 use Symfony\Bridge\Twig\Extension\CodeExtension;
 use Symfony\Bridge\Twig\Extension\ProfilerExtension;
 use Symfony\Bridge\Twig\Extension\StopwatchExtension;
+use Twig\Profiler\Profile;
 
 return static function (ContainerConfigurator $container) {
     $container->services()
@@ -18,6 +19,11 @@ return static function (ContainerConfigurator $container) {
 
         ->set('twig.extension.debug.stopwatch', StopwatchExtension::class)
         ->args([service('debug.stopwatch')->ignoreOnInvalid(), param('kernel.debug')])
+
+        ->set('twig.extension.profiler', ProfilerExtension::class)
+        ->args([service('twig.profile'), service('debug.stopwatch')->ignoreOnInvalid()])
+
+        ->set('twig.profile', Profile::class)
 
         ->set('data_collector.twig', TwigDataCollector::class)
         ->args([service('twig.profile'), service('twig')])
