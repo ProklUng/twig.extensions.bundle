@@ -2,6 +2,7 @@
 
 namespace Prokl\TwigExtensionsPackBundle;
 
+use Prokl\TwigExtensionsPackBundle\DependencyInjection\CompilerPass\MakeExtensionsPublic;
 use Prokl\TwigExtensionsPackBundle\DependencyInjection\CompilerPass\TwigExtensionConfigurator;
 use Prokl\TwigExtensionsPackBundle\DependencyInjection\TwigExtensionsPackExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -35,5 +36,6 @@ final class TwigExtensionsPackBundle extends Bundle
         parent::build($container);
 
         $container->addCompilerPass(new TwigExtensionConfigurator());
+        $container->addCompilerPass(new MakeExtensionsPublic());
     }
 }
