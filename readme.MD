@@ -157,7 +157,7 @@ Wordpress:
 Где-нибудь в `init.php` (для `extensions`; для `runtimes` класс обработчик - `Prokl\TwigExtensionsPackBundle\Services\Twig\TwigRuntimesBag`):
 
 ```php
-use Prokl\BitrixOrdinaryToolsBundle\Services\Twig\TwigExtensionsBag;
+use Prokl\TwigExtensionsPackBundle\Services\Twig\TwigExtensionsBag;
 use Bitrix\Main\EventManager;
 
 $events = [new Local\TwigExtension, Local\FooExtension::class];
