@@ -11,11 +11,21 @@ services:
       - '@twig.instance'
       - !tagged_iterator twig.runtime
 
+  Prokl\TwigExtensionsPackBundle\Services\TwigRuntimeConfigurator: '@twig_runtime_configurator'
+
   twig_runtime_configurator.init:
     class: Prokl\TwigExtensionsPackBundle\Services\TwigRuntimeConfigurator
     factory: ['@twig_runtime_configurator', 'register']
     tags:
       - { name: service.bootstrap }
+
+  # Template cache warmer
+  Prokl\TwigExtensionsPackBundle\Services\TemplateCacheWarmer:
+    autoconfigure: false
+    arguments:
+      - '@twig.instance'
+    class: Prokl\TwigExtensionsPackBundle\Services\TemplateCacheWarmer
+    tags: [kernel.cache_warmer]
 
   ##################
   # Twig extensions

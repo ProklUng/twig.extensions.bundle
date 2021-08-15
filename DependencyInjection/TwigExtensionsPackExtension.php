@@ -3,6 +3,8 @@
 namespace Prokl\TwigExtensionsPackBundle\DependencyInjection;
 
 use Exception;
+use Prokl\TwigExtensionsPackBundle\Services\TwigExtensionsBag;
+use Prokl\TwigExtensionsPackBundle\Services\TwigRuntimesBag;
 use Prokl\TwigExtensionsPackBundle\Twig\Extensions\RouteExtension;
 use Prokl\WpSymfonyRouterBundle\Services\Utils\DispatchController;
 use Mobile_Detect;
@@ -82,6 +84,12 @@ class TwigExtensionsPackExtension extends Extension
             if (!class_exists(RouteChecker::class)) {
                 $container->removeDefinition('Prokl\TwigExtensionsPackBundle\Twig\Functions\Bitrix\SymfonyTwigPath');
                 $container->removeDefinition(RouteExtension::class);
+            }
+
+            // Не установлен tools.twig - удалить лишнее.
+            if (!class_exists(TemplateEngine::class)) {
+                $container->removeDefinition(TwigExtensionsBag::class);
+                $container->removeDefinition(TwigRuntimesBag::class);
             }
         }
 

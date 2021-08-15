@@ -17,6 +17,20 @@ services:
     class: Prokl\TwigExtensionsPackBundle\Services\TwigConfiguratorNative
     factory: ['@twig_extension_bundle.native_configurator', 'config']
 
+  # Мигратор extensions в Твиг от maximaster.twig.tool.
+  Prokl\TwigExtensionsPackBundle\Services\TwigExtensionsBag:
+    arguments:
+      - !tagged_iterator twig.extension
+    tags:
+      - { name: bitrix.events.init, module: '', event: onAfterTwigTemplateEngineInited, method: handle, sort: 100 }
+
+  # Мигратор runtimes в Твиг от maximaster.twig.tool.
+  Prokl\TwigExtensionsPackBundle\Services\TwigRuntimesBag:
+    arguments:
+      - !tagged_iterator twig.runtime
+    tags:
+      - { name: bitrix.events.init, module: '', event: onAfterTwigTemplateEngineInited, method: handle, sort: 100 }
+
   ##################
   # Twig extensions
   ##################
