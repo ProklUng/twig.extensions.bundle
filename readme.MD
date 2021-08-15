@@ -154,7 +154,7 @@ Wordpress:
 
 Также эта штука поддается использованию автономно, без контейнера.
 
-Где-нибудь в `init.php` (для `extensions`; для `runtimes` класс обработчик - `Prokl\BitrixOrdinaryToolsBundle\Services\Twig\TwigRuntimesBag`):
+Где-нибудь в `init.php` (для `extensions`; для `runtimes` класс обработчик - `Prokl\TwigExtensionsPackBundle\Services\Twig\TwigRuntimesBag`):
 
 ```php
 use Prokl\BitrixOrdinaryToolsBundle\Services\Twig\TwigExtensionsBag;
